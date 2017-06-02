@@ -1,19 +1,42 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { Link, NavLink } from 'react-router-dom';
 import './App.css';
+// Theme import required to get Material-UI working
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import HomePage from './components/HomePage';
+import LoginPage from './containers/LoginPage';
+import SignUpPage from './containers/SignUpPage';
+
+import {
+  BrowserRouter as Router,
+  Route,
+} from 'react-router-dom';
+
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
+      <MuiThemeProvider>
+      <Router>
+      <div>
+        <div>
+          <div className="top-bar">
+            <div className="top-bar-left">
+              <NavLink to="/">React App</NavLink>
+            </div>
+
+            <div className="top-bar-right">
+              <Link to="/login">Log in</Link>
+              <Link to="/signup">Sign up</Link>
+            </div>
+          </div>
         </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+          <Route exact path="/" component={HomePage} />
+          <Route path="/login" component={LoginPage} />
+          <Route path="/signup" component={SignUpPage} />
       </div>
+      </Router>
+      </MuiThemeProvider>
     );
   }
 }
