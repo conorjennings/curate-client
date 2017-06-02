@@ -1,5 +1,6 @@
 import React from 'react';
 import SignUpForm from '../components/SignUpForm';
+import $ from 'jquery';
 
 
 class SignUpPage extends React.Component {
@@ -15,7 +16,6 @@ class SignUpPage extends React.Component {
       errors: {},
       user: {
         email: '',
-        name: '',
         password: ''
       }
     };
@@ -47,12 +47,21 @@ class SignUpPage extends React.Component {
   processForm(event) {
     // prevent default action. in this case, action is the form submission event
     event.preventDefault();
+    const email = this.state.user.email;
+    const password = this.state.user.password;
 
-    console.log('name:', this.state.user.name);
-    console.log('email:', this.state.user.email);
-    console.log('password:', this.state.user.password);
-  }
-
+   // create an AJAX request
+  $.ajax({
+    url: '/sign-up',
+    method: 'POST',
+    data: {
+      credentials: {
+        email,
+        password
+      }
+    }
+  })
+ }
   /**
    * Render the component.
    */

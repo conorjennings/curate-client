@@ -26,14 +26,14 @@ class App extends Component {
             </div>
 
             <div className="top-bar-right">
-              <Link to="/login">Log in</Link>
-              <Link to="/signup">Sign up</Link>
+              <Link to="/sign-in">Sign in</Link>
+              <Link to="/sign-up">Sign up</Link>
             </div>
           </div>
         </div>
           <Route exact path="/" component={HomePage} />
-          <Route path="/login" component={LoginPage} />
-          <Route path="/signup" component={SignUpPage} />
+          <Route path="/sign-in" component={LoginPage} />
+          <Route path="/sign-up" component={SignUpPage} />
       </div>
       </Router>
       </MuiThemeProvider>
