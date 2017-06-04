@@ -9,20 +9,18 @@ import TextField from 'material-ui/TextField';
 const LoginForm = ({
   onSubmit,
   onChange,
-  errors,
+  validationErrors,
   user
 }) => (
   <Card className="container">
     <form action="/" onSubmit={onSubmit}>
       <h2 className="card-heading">Sign In</h2>
 
-      {errors.summary && <p className="error-message">{errors.summary}</p>}
-
       <div className="field-line">
         <TextField
           floatingLabelText="Email"
           name="email"
-          errorText={errors.email}
+          errorText={validationErrors.email}
           onChange={onChange}
           value={user.email}
         />
@@ -34,7 +32,7 @@ const LoginForm = ({
           type="password"
           name="password"
           onChange={onChange}
-          errorText={errors.password}
+          errorText={validationErrors.password}
           value={user.password}
         />
       </div>
@@ -43,7 +41,7 @@ const LoginForm = ({
         <RaisedButton type="submit" label="Sign In" primary />
       </div>
 
-      <CardText>No not have an account? <Link to={'/signup'}>Create one</Link>.</CardText>
+      <CardText>No not have an account? <Link to={'/sign-up'}>Create one</Link>.</CardText>
     </form>
   </Card>
 );
@@ -51,7 +49,6 @@ const LoginForm = ({
 LoginForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
-  errors: PropTypes.object.isRequired,
   user: PropTypes.object.isRequired
 };
 

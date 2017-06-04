@@ -1,12 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
-import { Card, CardText } from 'material-ui/Card';
+import { Card } from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
 
 
-const SignUpForm = ({
+const ChangePasswordForm = ({
   onSubmit,
   onChange,
   validationErrors,
@@ -14,20 +13,10 @@ const SignUpForm = ({
 }) => (
   <Card className="container">
     <form action="/" onSubmit={onSubmit}>
-      <h2 className="card-heading">Sign Up</h2>
+      <h2 className="card-heading">Change Password</h2>
 
       {/*IF conditions don't work in JSX. Below element will display ONLY if errors.summary contains something or is TRUE.*/}
       {validationErrors.passwordMatch && <p className="error-message">{validationErrors.passwordMatch}</p>}
-
-      <div className="field-line">
-        <TextField
-          floatingLabelText="Email"
-          name="email"
-          errorText={validationErrors.email}
-          onChange={onChange}
-          value={user.email}
-        />
-      </div>
 
       <div className="field-line">
         <TextField
@@ -52,19 +41,17 @@ const SignUpForm = ({
       </div>
 
       <div className="button-line">
-        <RaisedButton type="submit" label="Create New Account" primary />
+        <RaisedButton type="submit" label="Change Password" primary />
       </div>
-
-      <CardText>Already have an account? <Link to={'/sign-in'}>Sign in</Link></CardText>
     </form>
   </Card>
 );
 
 // Checks to ensure the below functions/objects are provided when a user is on the Sign-In page.
-SignUpForm.propTypes = {
+ChangePasswordForm.propTypes = {
   onSubmit: PropTypes.func.isRequired,
   onChange: PropTypes.func.isRequired,
   user: PropTypes.object.isRequired
 };
 
-export default SignUpForm;
+export default ChangePasswordForm;

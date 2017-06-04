@@ -6,6 +6,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import HomePage from './components/HomePage';
 import LoginPage from './containers/LoginPage';
 import SignUpPage from './containers/SignUpPage';
+import ChangePasswordPage from './containers/ChangePasswordPage';
 
 import {
   BrowserRouter as Router,
@@ -28,12 +29,14 @@ class App extends Component {
             <div className="top-bar-right">
               <Link to="/sign-in">Sign in</Link>
               <Link to="/sign-up">Sign up</Link>
+              <Link to="/change-password">Change Password</Link>
             </div>
           </div>
         </div>
           <Route exact path="/" component={HomePage} />
           <Route path="/sign-in" component={LoginPage} />
           <Route path="/sign-up" component={SignUpPage} />
+          <Route path="/change-password" component={ChangePasswordPage} />
       </div>
       </Router>
       </MuiThemeProvider>

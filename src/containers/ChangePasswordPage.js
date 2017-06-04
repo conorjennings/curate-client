@@ -1,9 +1,9 @@
 import React from 'react';
-import SignUpForm from '../components/SignUpForm';
+import ChangePasswordForm from '../components/ChangePasswordForm';
 import $ from 'jquery';
 import validator from 'validator';
 
-class SignUpPage extends React.Component {
+class ChangePasswordPage extends React.Component {
 
   /**
    * Class constructor.
@@ -15,7 +15,6 @@ class SignUpPage extends React.Component {
     this.state = {
       validationErrors: {},
       user: {
-        email: '',
         password: '',
         passwordConfirm: ''
       }
@@ -51,13 +50,13 @@ class SignUpPage extends React.Component {
   }
 
    // create an AJAX request for Sign Up
-   signUpAjax(email, password, passwordConfirm) {
+   signUpAjax(password, passwordConfirm) {
     return $.ajax({
-          url: '/sign-up',
-          method: 'POST',
+      // need to pass id of user in url
+          url: '/change-password',
+          method: 'PATCH',
           data: {
-            credentials: {
-              email,
+            password: {
               password,
               passwordConfirm
             }
@@ -75,15 +74,10 @@ class SignUpPage extends React.Component {
     // prevent default action. in this case, action is the form submission event
     event.preventDefault();
     const validationErrors = this.state.validationErrors;
-    const email = this.state.user.email;
     const password = this.state.user.password;
     const passwordConfirm = this.state.user.passwordConfirm;
 
-    const errors = { email:
-                       { result: validator.isEmpty(email),
-                         message: "email required"
-                       },
-                     password:
+    const errors = { password:
                        { result: validator.isEmpty(password),
                          message: "password required"
                        },
@@ -115,7 +109,7 @@ class SignUpPage extends React.Component {
         return JSON.stringify(obj) === JSON.stringify({});
     }
     if(emp(this.state.validationErrors)) {
-      this.signUpAjax(email, password)
+      this.signUpAjax(password, passwordConfirm)
       }
     }
 
@@ -124,7 +118,7 @@ class SignUpPage extends React.Component {
    */
   render() {
     return (
-      <SignUpForm
+      <ChangePasswordForm
         onSubmit={this.processForm}
         onChange={this.changeUser}
         user={this.state.user}
@@ -135,4 +129,4 @@ class SignUpPage extends React.Component {
 
 }
 
-export default SignUpPage;
+export default ChangePasswordPage;
