@@ -20,23 +20,33 @@ const ChangePasswordForm = ({
 
       <div className="field-line">
         <TextField
-          floatingLabelText="Password"
-          type="password"
-          name="password"
+          floatingLabelText="Current Password"
+          name="oldPw"
+          errorText={validationErrors.oldPw}
           onChange={onChange}
-          errorText={validationErrors.password}
-          value={user.password}
+          value={user.oldPw}
         />
       </div>
 
       <div className="field-line">
         <TextField
-          floatingLabelText="Confirm Password"
+          floatingLabelText="New Password"
           type="password"
-          name="passwordConfirm"
+          name="newPw"
           onChange={onChange}
-          errorText={validationErrors.passwordConfirm}
-          value={user.passwordConfirm}
+          errorText={validationErrors.newPw}
+          value={user.newPw}
+        />
+      </div>
+
+      <div className="field-line">
+        <TextField
+          floatingLabelText="Confirm New Password"
+          type="password"
+          name="newConfirm"
+          onChange={onChange}
+          errorText={validationErrors.newConfirm}
+          value={user.newConfirm}
         />
       </div>
 

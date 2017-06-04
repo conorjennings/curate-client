@@ -2,6 +2,9 @@ import React from 'react';
 import ChangePasswordForm from '../components/ChangePasswordForm';
 import $ from 'jquery';
 import validator from 'validator';
+import { sessionService } from 'redux-react-session';
+import { getState } from 'redux';
+import store from '../index';
 
 class ChangePasswordPage extends React.Component {
 
@@ -15,8 +18,9 @@ class ChangePasswordPage extends React.Component {
     this.state = {
       validationErrors: {},
       user: {
-        password: '',
-        passwordConfirm: ''
+        oldPw: '',
+        newPw: '',
+        newConfirm: ''
       }
     };
 
@@ -39,7 +43,7 @@ class ChangePasswordPage extends React.Component {
       delete validationErrors[field]
     }
 
-    if(validator.equals(user.password, user.passwordConfirm)) {
+    if(validator.equals(user.newPw, user.newConfirm)) {
       delete validationErrors['passwordMatch']
     }
 
@@ -49,16 +53,28 @@ class ChangePasswordPage extends React.Component {
     });
   }
 
-   // create an AJAX request for Sign Up
-   signUpAjax(password, passwordConfirm) {
+  //  create an AJAX request for Sign Up
+   changePasswordAjax(oldPw, newPw) {
+
+    const currentStore = store.getState()
+    const id = currentStore.session.user.id
+    const token = currentStore.session.user.token
+
+    console.log('token looks like ', token)
+    console.log('old pw looks like ', oldPw)
+    console.log('new ps looks like ', newPw)
+    console.log('id looks like ', id)
+
     return $.ajax({
-      // need to pass id of user in url
-          url: '/change-password',
+          url: '/change-password/' + id,
           method: 'PATCH',
+          headers: {
+            Authorization: 'Token token=' + token
+          },
           data: {
-            password: {
-              password,
-              passwordConfirm
+            passwords: {
+              oldPw,
+              newPw
             }
           }
         })
@@ -74,20 +90,25 @@ class ChangePasswordPage extends React.Component {
     // prevent default action. in this case, action is the form submission event
     event.preventDefault();
     const validationErrors = this.state.validationErrors;
-    const password = this.state.user.password;
-    const passwordConfirm = this.state.user.passwordConfirm;
+    const oldPw = this.state.user.oldPw;
+    const newPw = this.state.user.newPw;
+    const newConfirm = this.state.user.newConfirm;
 
-    const errors = { password:
-                       { result: validator.isEmpty(password),
-                         message: "password required"
+    const errors = { oldPw:
+                       { result: validator.isEmpty(oldPw),
+                         message: "existing password required"
                        },
-                     passwordConfirm:
-                       { result: validator.isEmpty(passwordConfirm),
-                         message: "password confirmation required"
+                     newPw:
+                       { result: validator.isEmpty(newPw),
+                         message: "new password required"
+                       },
+                     newConfirm:
+                       { result: validator.isEmpty(newConfirm),
+                         message: "new password confirmation required"
                        },
                      passwordMatch:
-                       { result: !validator.equals(password, passwordConfirm),
-                         message: "provided passwords do not match"
+                       { result: !validator.equals(newPw, newConfirm),
+                         message: "provided new passwords do not match"
                        }
                    }
 
@@ -109,7 +130,7 @@ class ChangePasswordPage extends React.Component {
         return JSON.stringify(obj) === JSON.stringify({});
     }
     if(emp(this.state.validationErrors)) {
-      this.signUpAjax(password, passwordConfirm)
+      this.changePasswordAjax(oldPw, newPw)
       }
     }
 

@@ -2,6 +2,7 @@ import React from 'react';
 import LoginForm from '../components/LoginForm';
 import $ from 'jquery';
 import validator from 'validator';
+import { sessionService } from 'redux-react-session';
 
 
 class LoginPage extends React.Component {
@@ -46,10 +47,9 @@ class LoginPage extends React.Component {
      });
    }
 
-
    signInAjax(email, password) {
     // create an AJAX request Sign In
-   $.ajax({
+   return $.ajax({
      url: '/sign-in',
      method: 'POST',
      data: {
@@ -60,6 +60,8 @@ class LoginPage extends React.Component {
      }
    })
  }
+
+
 
    /**
     * Process the form.
@@ -101,8 +103,13 @@ class LoginPage extends React.Component {
 
      return JSON.stringify(obj) === JSON.stringify({});
    }
+
    if(emp(this.state.validationErrors)) {
-      this.signInAjax(email, password)
+      this.signInAjax(email, password).then((resp) => {
+        sessionService.saveSession(resp.user.token);
+        sessionService.saveUser(resp.user)
+        console.log('res.user is ', resp.user)
+      }).then(sessionService.loadSession).then(currentSession => console.log('currentSession is', currentSession)).then(sessionService.loadUser).then(currentUser => console.log('currentUser is', currentUser))
     }
   }
 
