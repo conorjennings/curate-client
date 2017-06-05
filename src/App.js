@@ -7,7 +7,9 @@ import LoginPage from './containers/LoginPage';
 import SignUpPage from './containers/SignUpPage';
 import ChangePasswordPage from './containers/ChangePasswordPage';
 import Dashboard from './components/Dashboard';
+import RetailProfiles from './containers/RetailProfiles';
 import store from './index';
+import { sessionService } from 'redux-react-session';
 
 import {
   Link,
@@ -48,8 +50,10 @@ class App extends React.Component {
 };
 
   render() {
+      // const test = this.props.store
       // const x = store.getState().session.authenticated
       // console.log('store',x)
+      // console.log('test is ', test)
     return (
       <MuiThemeProvider>
       <Router>
@@ -64,22 +68,17 @@ class App extends React.Component {
               <Link to="/sign-in">Sign in</Link>
               <Link to="/sign-up">Sign up</Link>
               <Link to="/change-password">Change Password</Link>
+              <Link to="/dashboard">Dashboard</Link>
             </div>
           </div>
         </div>
           <Route exact path="/" component={HomePage} />
 
-          <Route path="/sign-in" render={() => (
-          this.state.store.session.authenticated ? (
-            <Redirect to="/dashboard"/>
-          ) : (
-            <LoginPage/>
-          )
-        )}/>
+          <Route path="/sign-in" component={LoginPage} />
 
           <Route path="/sign-up" component={SignUpPage} />
           <Route path="/change-password" component={ChangePasswordPage} />
-          <Route path="/dashboard" component={Dashboard}/>
+          <Route path="/dashboard" component={RetailProfiles}/>
       </div>
       </Router>
       </MuiThemeProvider>

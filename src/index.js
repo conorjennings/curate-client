@@ -4,6 +4,7 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 // Required to manage user sessions. Need to track if a user is authenticated.
 import { combineReducers, createStore } from 'redux';
+import { Provider } from 'react-redux';
 import { sessionService, sessionReducer } from 'redux-react-session';
 
 import './index.css';
@@ -24,7 +25,7 @@ sessionService.initSessionService(store, options);
 injectTapEventPlugin();
 
 
-ReactDOM.render(<App store={store}/>, document.getElementById('root'));
+ReactDOM.render(<App store={store} />, document.getElementById('root'));
 registerServiceWorker();
 
 export default store;
