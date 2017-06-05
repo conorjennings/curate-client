@@ -26,7 +26,6 @@ class ChangePasswordPage extends React.Component {
 
     this.processForm = this.processForm.bind(this);
     this.changeUser = this.changeUser.bind(this);
-    // Run field validations on initial state
   }
 
   /**

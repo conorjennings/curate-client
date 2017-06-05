@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link, NavLink } from 'react-router-dom';
 import './App.css';
 // Theme import required to get Material-UI working
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -7,15 +6,50 @@ import HomePage from './components/HomePage';
 import LoginPage from './containers/LoginPage';
 import SignUpPage from './containers/SignUpPage';
 import ChangePasswordPage from './containers/ChangePasswordPage';
+import Dashboard from './components/Dashboard';
+import store from './index';
 
 import {
+  Link,
+  NavLink,
   BrowserRouter as Router,
   Route,
+  Redirect,
+  withRouter,
 } from 'react-router-dom';
 
+// const PrivateRoute = ({ component: Component, ...rest }) => (
+//   <Route {...rest} render={props => (
+//     store.getState().session.authenticated ? (
+//       <Component {...props}/>
+//     ) : (
+//       <Redirect to={{
+//         pathname: '/sign-up',
+//         state: { from: props.location }
+//       }}/>
+//     )
+//   )}/>
+// )
 
-class App extends Component {
+// const isAuthenticated = store.getState()
+//          <Route exact path="/" component={HomePage} />
+//          <Route path="/sign-in" component={LoginPage}/>
+
+
+class App extends React.Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      store: this.props.store.getState()
+  }
+  console.log('this.state.store ', this.state.store)
+};
+
   render() {
+      // const x = store.getState().session.authenticated
+      // console.log('store',x)
     return (
       <MuiThemeProvider>
       <Router>
@@ -34,9 +68,18 @@ class App extends Component {
           </div>
         </div>
           <Route exact path="/" component={HomePage} />
-          <Route path="/sign-in" component={LoginPage} />
+
+          <Route path="/sign-in" render={() => (
+          this.state.store.session.authenticated ? (
+            <Redirect to="/dashboard"/>
+          ) : (
+            <LoginPage/>
+          )
+        )}/>
+
           <Route path="/sign-up" component={SignUpPage} />
           <Route path="/change-password" component={ChangePasswordPage} />
+          <Route path="/dashboard" component={Dashboard}/>
       </div>
       </Router>
       </MuiThemeProvider>

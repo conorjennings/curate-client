@@ -3,6 +3,7 @@ import LoginForm from '../components/LoginForm';
 import $ from 'jquery';
 import validator from 'validator';
 import { sessionService } from 'redux-react-session';
+import store from '../index';
 
 
 class LoginPage extends React.Component {
@@ -108,8 +109,8 @@ class LoginPage extends React.Component {
       this.signInAjax(email, password).then((resp) => {
         sessionService.saveSession(resp.user.token);
         sessionService.saveUser(resp.user)
-        console.log('res.user is ', resp.user)
-      }).then(sessionService.loadSession).then(currentSession => console.log('currentSession is', currentSession)).then(sessionService.loadUser).then(currentUser => console.log('currentUser is', currentUser))
+        console.log('store.getState() ', store.getState())
+      })
     }
   }
 
@@ -118,12 +119,11 @@ class LoginPage extends React.Component {
    */
   render() {
     return (
-      <LoginForm
-        onSubmit={this.processForm}
-        onChange={this.changeUser}
-        user={this.state.user}
-        validationErrors={this.state.validationErrors}
-      />
+          <LoginForm
+            onSubmit={this.processForm}
+            onChange={this.changeUser}
+            user={this.state.user}
+            validationErrors={this.state.validationErrors}/>
     );
   }
 
