@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 // Theme import required to get Material-UI working
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -6,54 +6,45 @@ import HomePage from './components/HomePage';
 import LoginPage from './containers/LoginPage';
 import SignUpPage from './containers/SignUpPage';
 import ChangePasswordPage from './containers/ChangePasswordPage';
-import Dashboard from './components/Dashboard';
 import RetailProfiles from './containers/RetailProfiles';
 import store from './index';
 import { sessionService } from 'redux-react-session';
+import FlatButton from 'material-ui/FlatButton';
+import $ from 'jquery';
+
 
 import {
   Link,
   NavLink,
   BrowserRouter as Router,
   Route,
-  Redirect,
-  withRouter,
 } from 'react-router-dom';
-
-// const PrivateRoute = ({ component: Component, ...rest }) => (
-//   <Route {...rest} render={props => (
-//     store.getState().session.authenticated ? (
-//       <Component {...props}/>
-//     ) : (
-//       <Redirect to={{
-//         pathname: '/sign-up',
-//         state: { from: props.location }
-//       }}/>
-//     )
-//   )}/>
-// )
-
-// const isAuthenticated = store.getState()
-//          <Route exact path="/" component={HomePage} />
-//          <Route path="/sign-in" component={LoginPage}/>
-
 
 class App extends React.Component {
 
-  constructor(props) {
-    super(props);
+  signOutAjax(event) {
+   event.preventDefault();
+   // create an AJAX request Sign Out
+   const currentStore = store.getState()
+   const token = currentStore.session.user.token
+   const id = currentStore.session.user.id
 
-    this.state = {
-      store: this.props.store.getState()
-  }
-  console.log('this.state.store ', this.state.store)
+   console.log('token is ', token)
+   console.log('id is ', id)
+
+    return $.ajax({
+    url: '/sign-out/' + id,
+    method: 'DELETE',
+    headers: {
+      Authorization: 'Token token=' + token
+    }
+  }).then((resp) => {
+    sessionService.deleteSession()
+    sessionService.deleteUser()}).then(
+    console.log('store.getState() ', store.getState()))
 };
 
   render() {
-      // const test = this.props.store
-      // const x = store.getState().session.authenticated
-      // console.log('store',x)
-      // console.log('test is ', test)
     return (
       <MuiThemeProvider>
       <Router>
@@ -69,6 +60,7 @@ class App extends React.Component {
               <Link to="/sign-up">Sign up</Link>
               <Link to="/change-password">Change Password</Link>
               <Link to="/dashboard">Dashboard</Link>
+              <FlatButton label="Sign Out" onClick={this.signOutAjax}/>
             </div>
           </div>
         </div>

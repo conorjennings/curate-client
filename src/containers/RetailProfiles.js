@@ -1,8 +1,6 @@
 import React from 'react';
 import Dashboard from '../components/Dashboard';
 import $ from 'jquery';
-import { sessionService } from 'redux-react-session';
-import { getState } from 'redux';
 import store from '../index';
 
 class RetailProfiles extends React.Component {

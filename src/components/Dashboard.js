@@ -1,10 +1,10 @@
 import React from 'react';
 import { Card, CardTitle } from 'material-ui/Card';
-import mui from 'material-ui';
 import FavoriteIcon from 'react-material-icons/icons/action/favorite';
 import SlowIcon from 'react-material-icons/icons/action/schedule';
 import SustainableIcon from 'react-material-icons/icons/action/cached';
 import IndependentIcon from 'react-material-icons/icons/action/face';
+import FlatButton from 'material-ui/FlatButton';
 
 // Theme import required to get Material-UI working
 
@@ -15,7 +15,7 @@ const Dashboard = ({retailProfiles}) => {
 
   const listItems = retailProfileArray.map((retailProfile) =>
     <div key={retailProfile.id}>
-    <a href={retailProfile.siteUrl}>{retailProfile.name}</a>
+    <a href={retailProfile.siteUrl} target="_blank" rel="noopener noreferrer">{retailProfile.name}</a>
     <p>{retailProfile.notes}</p>
     <div>
     {retailProfile.vegan && <FavoriteIcon/>}
@@ -23,6 +23,7 @@ const Dashboard = ({retailProfiles}) => {
     {retailProfile.sustainable && <SustainableIcon/>}
     {retailProfile.independent && <IndependentIcon/>}
     </div>
+    <FlatButton label="Delete" onClick={this.deleteRecord} />
     </div>
   )
 

@@ -2,8 +2,6 @@ import React from 'react';
 import ChangePasswordForm from '../components/ChangePasswordForm';
 import $ from 'jquery';
 import validator from 'validator';
-import { sessionService } from 'redux-react-session';
-import { getState } from 'redux';
 import store from '../index';
 
 class ChangePasswordPage extends React.Component {

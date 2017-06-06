@@ -109,8 +109,7 @@ class LoginPage extends React.Component {
       this.signInAjax(email, password).then((resp) => {
         sessionService.saveSession(resp.user.token);
         sessionService.saveUser(resp.user)
-        console.log('store.getState() ', store.getState())
-      })
+      }).then(console.log('store.getState() ', store.getState()))
     }
   }
 
