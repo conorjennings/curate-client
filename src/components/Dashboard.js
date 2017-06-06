@@ -5,11 +5,17 @@ import SlowIcon from 'react-material-icons/icons/action/schedule';
 import SustainableIcon from 'react-material-icons/icons/action/cached';
 import IndependentIcon from 'react-material-icons/icons/action/face';
 import FlatButton from 'material-ui/FlatButton';
+import Delete from './Delete'
+
+var Masonry = require('react-masonry-component');
+
+var masonryOptions = {
+    transitionDuration: 0
+};
 
 // Theme import required to get Material-UI working
 
-const Dashboard = ({retailProfiles}) => {
-
+const Dashboard = ({retailProfiles, handleClick}) => {
   const retailProfileArray = retailProfiles
   console.log('retailProfiles from props ', retailProfileArray)
 
@@ -23,19 +29,19 @@ const Dashboard = ({retailProfiles}) => {
     {retailProfile.sustainable && <SustainableIcon/>}
     {retailProfile.independent && <IndependentIcon/>}
     </div>
-    <FlatButton label="Delete" onClick={this.deleteRecord} />
+    <Delete
+      data={retailProfile.id}
+      handleClick={() => handleClick(retailProfile.id)}
+    />
     </div>
   )
 
   console.log('listItems is ', listItems)
 
   return (
-  <Card className="container">
-  <CardTitle title="Dashboard" subtitle="Cool stuff goes here." />
-  <div>
+  <Masonry>
     {listItems}
-  </div>
-  </Card>
+  </Masonry>
   );
 }
 

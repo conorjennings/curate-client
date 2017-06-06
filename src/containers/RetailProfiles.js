@@ -15,6 +15,8 @@ class RetailProfiles extends React.Component {
     this.state = {
       retailProfiles: []
     }
+
+    this.delete = this.delete.bind(this);
   }
 
   /**
@@ -47,6 +49,14 @@ class RetailProfiles extends React.Component {
         })
   }
 
+  delete(id) {
+    let retailProfilesArray = this.state['retailProfiles']
+    console.log('id being passed in is ', id)
+    console.log('retail profiles array looks like ', retailProfilesArray)
+    let retailProfiles = retailProfilesArray.filter(retailProfile => retailProfile.id !== id)
+    this.setState({retailProfiles})
+  }
+
   /**
    * Render the component.
    */
@@ -54,7 +64,7 @@ class RetailProfiles extends React.Component {
     console.log('associated retail profiles ', this.state['retailProfiles'])
     return (
       <div>
-      <Dashboard retailProfiles = { this.state['retailProfiles'] }
+      <Dashboard handleClick={this.delete} retailProfiles = { this.state['retailProfiles'] }
       />
       <BottomNav />
       </div>

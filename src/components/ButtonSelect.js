@@ -5,8 +5,7 @@ import FavoriteIcon from 'react-material-icons/icons/action/favorite';
 
 const ButtonSelect = (props) => (
   <div className="form-group">
-  <h3>{props.name}</h3>
-  <IconButton onClick={props.onClick}>
+  <IconButton tooltip="vegan" onClick={props.onClick}>
     <FavoriteIcon
       color={ props.vegan ? 'red' : 'black'}
       hoverColor='red'/>
