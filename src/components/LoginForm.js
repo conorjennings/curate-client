@@ -10,11 +10,15 @@ const LoginForm = ({
   onSubmit,
   onChange,
   validationErrors,
-  user
+  user,
+  ajaxError
 }) => (
   <Card className="container">
     <form action="/" onSubmit={onSubmit}>
       <h2 className="card-heading">Sign In</h2>
+
+      {/*IF conditions don't work in JSX. Below element will display ONLY if errors.summary contains something or is TRUE.*/}
+      {ajaxError && <p className="error-message">{ajaxError}</p>}
 
       <div className="field-line">
         <TextField

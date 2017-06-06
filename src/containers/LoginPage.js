@@ -21,7 +21,8 @@ class LoginPage extends React.Component {
       user: {
         email: '',
         password: ''
-      }
+      },
+      ajaxError: ''
     };
 
     this.processForm = this.processForm.bind(this);
@@ -109,7 +110,7 @@ class LoginPage extends React.Component {
       this.signInAjax(email, password).then((resp) => {
         sessionService.saveSession(resp.user.token);
         sessionService.saveUser(resp.user)
-      }).then(console.log('store.getState() ', store.getState()))
+      }).catch((error) => {this.setState({ ajaxError : 'invalid credentials' })})
     }
   }
 
@@ -122,7 +123,8 @@ class LoginPage extends React.Component {
             onSubmit={this.processForm}
             onChange={this.changeUser}
             user={this.state.user}
-            validationErrors={this.state.validationErrors}/>
+            validationErrors={this.state.validationErrors}
+            ajaxError={this.state.ajaxError}/>
     );
   }
 
