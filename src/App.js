@@ -30,7 +30,7 @@ class App extends React.Component {
         <div>
           <div className="top-bar">
             <div className="top-bar-left">
-              <NavLink to="/">curate.</NavLink>
+              <NavLink to="/" className="curate-logo">curate.</NavLink>
             </div>
 
             <div className="top-bar-right">

@@ -1,3 +1,12 @@
+* {
+  font-family: 'Titillium Web', sans-serif;
+  font-weight: 300;
+}
+
+.curate-logo {
+  letter-spacing: 4px;
+}
+
 .bottom-nav {
     position: fixed;
     bottom: 0;
@@ -10,7 +19,7 @@ body {
 }
 
 a {
-  color: #00bcd4;
+  color: rgb(255,82,82);
   font-weight: bold;
   text-decoration: none;
   transition: color 0.4s;
