@@ -7,6 +7,7 @@ import LoginPage from './containers/LoginPage';
 import SignUpPage from './containers/SignUpPage';
 import ChangePasswordPage from './containers/ChangePasswordPage';
 import RetailProfiles from './containers/RetailProfiles';
+import CreateContainer from './containers/CreateContainer';
 import store from './index';
 import { sessionService } from 'redux-react-session';
 import FlatButton from 'material-ui/FlatButton';
@@ -38,6 +39,7 @@ class App extends React.Component {
               <Link to="/sign-up">Sign up</Link>
               <Link to="/change-password">Change Password</Link>
               <Link to="/dashboard">Dashboard</Link>
+              <Link to="/new">New</Link>
             </div>
           </div>
         </div>
@@ -48,6 +50,7 @@ class App extends React.Component {
           <Route path="/sign-up" component={SignUpPage} />
           <Route path="/change-password" component={ChangePasswordPage} />
           <Route path="/dashboard" component={RetailProfiles}/>
+          <Route path="/new" component={CreateContainer}/>
       </div>
       </Router>
       </MuiThemeProvider>
