@@ -55,6 +55,18 @@ class RetailProfiles extends React.Component {
     console.log('retail profiles array looks like ', retailProfilesArray)
     let retailProfiles = retailProfilesArray.filter(retailProfile => retailProfile.id !== id)
     this.setState({retailProfiles})
+    // Kick off DELETE AJAX to delete record from backend
+    const currentStore = store.getState()
+    const token = currentStore.session.user.token
+    console.log('this is the token for delete ', token)
+    return $.ajax({
+          url: '/retailprofiles/' + id,
+          method: 'DELETE',
+          headers: {
+            Authorization: 'Token token=' + token
+          },
+        }).then((resp) => {
+          console.log('this is the response ', resp) })
   }
 
   /**
