@@ -6,6 +6,7 @@ import SustainableIcon from 'react-material-icons/icons/action/cached';
 import IndependentIcon from 'react-material-icons/icons/action/face';
 import FlatButton from 'material-ui/FlatButton';
 import Delete from './Delete'
+import Edit from './Edit'
 
 var Masonry = require('react-masonry-component');
 
@@ -15,7 +16,7 @@ var masonryOptions = {
 
 // Theme import required to get Material-UI working
 
-const Dashboard = ({retailProfiles, handleClick}) => {
+const Dashboard = ({retailProfiles, handleClick, handleEdit}) => {
   const retailProfileArray = retailProfiles
   console.log('retailProfiles from props ', retailProfileArray)
 
@@ -29,14 +30,16 @@ const Dashboard = ({retailProfiles, handleClick}) => {
     {retailProfile.sustainable && <SustainableIcon/>}
     {retailProfile.independent && <IndependentIcon/>}
     </div>
+    <Edit
+      data={retailProfile.id}
+      handleEdit={() => handleEdit(retailProfile.id)}
+      />
     <Delete
       data={retailProfile.id}
       handleClick={() => handleClick(retailProfile.id)}
     />
     </div>
   )
-
-  console.log('listItems is ', listItems)
 
   return (
   <Masonry>

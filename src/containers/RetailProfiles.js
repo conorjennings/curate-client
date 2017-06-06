@@ -17,6 +17,7 @@ class RetailProfiles extends React.Component {
     }
 
     this.delete = this.delete.bind(this);
+    this.edit = this.edit.bind(this);
   }
 
   /**
@@ -49,6 +50,20 @@ class RetailProfiles extends React.Component {
         })
   }
 
+  edit(id) {
+    // Kick off GET AJAX to return the profile to be edited
+    const currentStore = store.getState()
+    const token = currentStore.session.user.token
+    return $.ajax({
+          url: '/retailprofiles/' + id,
+          method: 'GET',
+          headers: {
+            Authorization: 'Token token=' + token
+          },
+        }).then((resp) => {
+          console.log('this is the response ', resp) })
+  }
+
   delete(id) {
     let retailProfilesArray = this.state['retailProfiles']
     console.log('id being passed in is ', id)
@@ -69,6 +84,7 @@ class RetailProfiles extends React.Component {
           console.log('this is the response ', resp) })
   }
 
+
   /**
    * Render the component.
    */
@@ -76,7 +92,7 @@ class RetailProfiles extends React.Component {
     console.log('associated retail profiles ', this.state['retailProfiles'])
     return (
       <div>
-      <Dashboard handleClick={this.delete} retailProfiles = { this.state['retailProfiles'] }
+      <Dashboard handleClick={this.delete} handleEdit={this.edit} retailProfiles = { this.state['retailProfiles'] }
       />
       <BottomNav />
       </div>
