@@ -22,28 +22,6 @@ import {
 
 class App extends React.Component {
 
-  signOutAjax(event) {
-   event.preventDefault();
-   // create an AJAX request Sign Out
-   const currentStore = store.getState()
-   const token = currentStore.session.user.token
-   const id = currentStore.session.user.id
-
-   console.log('token is ', token)
-   console.log('id is ', id)
-
-    return $.ajax({
-    url: '/sign-out/' + id,
-    method: 'DELETE',
-    headers: {
-      Authorization: 'Token token=' + token
-    }
-  }).then((resp) => {
-    sessionService.deleteSession()
-    sessionService.deleteUser()}).then(
-    console.log('store.getState() ', store.getState()))
-};
-
   render() {
     return (
       <MuiThemeProvider>
@@ -52,7 +30,7 @@ class App extends React.Component {
         <div>
           <div className="top-bar">
             <div className="top-bar-left">
-              <NavLink to="/">React App</NavLink>
+              <NavLink to="/">curate.</NavLink>
             </div>
 
             <div className="top-bar-right">
@@ -60,7 +38,6 @@ class App extends React.Component {
               <Link to="/sign-up">Sign up</Link>
               <Link to="/change-password">Change Password</Link>
               <Link to="/dashboard">Dashboard</Link>
-              <FlatButton label="Sign Out" onClick={this.signOutAjax}/>
             </div>
           </div>
         </div>

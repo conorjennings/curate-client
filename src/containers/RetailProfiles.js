@@ -1,5 +1,6 @@
 import React from 'react';
 import Dashboard from '../components/Dashboard';
+import BottomNav from '../components/BottomNav';
 import $ from 'jquery';
 import store from '../index';
 
@@ -52,8 +53,11 @@ class RetailProfiles extends React.Component {
   render() {
     console.log('associated retail profiles ', this.state['retailProfiles'])
     return (
+      <div>
       <Dashboard retailProfiles = { this.state['retailProfiles'] }
       />
+      <BottomNav />
+      </div>
     );
   }
 

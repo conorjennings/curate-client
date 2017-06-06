@@ -1,3 +1,9 @@
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+}
+
 body {
   margin: 0;
   font-size: 16px;
