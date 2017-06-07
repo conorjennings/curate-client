@@ -9,14 +9,18 @@ import ButtonSelect from '../components/ButtonSelect';
  * A modal dialog can only be closed by selecting one of the actions.
  */
 const EditDialog = ({
-  dialogOpen
+  dialogOpen,
+  editRecord,
+  handleDialogClose
 }) => {
+
+    console.log('editRecord is ', editRecord)
 
     const actions = [
       <FlatButton
         label="Cancel"
         primary={true}
-        onTouchTap={this.handleClose}
+        onTouchTap={handleDialogClose}
       />,
       <FlatButton
         label="Submit"
@@ -29,7 +33,7 @@ const EditDialog = ({
     return (
       <div>
         <Dialog
-          title="Dialog With Actions"
+          title="Edit Retail Profile"
           actions={actions}
           modal={true}
           open={dialogOpen}
@@ -40,19 +44,23 @@ const EditDialog = ({
             inputType={'text'}
               title={'Retailer Name'}
               name={'name'}
+              content={editRecord.name}
               placeholder={'Add retailer name here'}/> {/* Name of Retail Space */}
           <SingleInput
             inputType={'text'}
               title={'Site Link'}
               name={'siteUrl'}
+              content={editRecord.siteUrl}
               placeholder={'Add link to site here'}/> {/* Website of Retail Space */}
           <SingleInput
             inputType={'text'}
               title={'Notes'}
               name={'notes'}
+              content={editRecord.notes}
               placeholder={'Add any comments here'}/> {/* Any notes user wants to capture */}
           <ButtonSelect
-              name={'vegan'}/> {/* User indicates if store is vegan friendly*/}
+              name={'vegan'}
+              vegan={editRecord.vegan}/> {/* User indicates if store is vegan friendly*/}
       </form>
         </Dialog>
       </div>

@@ -15,12 +15,22 @@ class RetailProfiles extends React.Component {
 
     this.state = {
       retailProfiles: [],
-      dialogOpen: false
+      dialogOpen: false,
+      editRecord: {
+        name: '',
+        siteUrl: '',
+        notes: '',
+        vegan: '',
+        slow: '',
+        sustainable: '',
+        independent: ''
+      }
     }
 
     this.delete = this.delete.bind(this);
     this.edit = this.edit.bind(this);
     this.handleDialogOpen = this.handleDialogOpen.bind(this);
+    this.handleDialogClose = this.handleDialogClose.bind(this);
   }
 
   /**
@@ -57,6 +67,10 @@ class RetailProfiles extends React.Component {
     this.setState({dialogOpen: true});
   };
 
+  handleDialogClose () {
+    this.setState({dialogOpen: false});
+  };
+
   edit(id) {
     // Kick off GET AJAX to return the profile to be edited
     const currentStore = store.getState()
@@ -68,7 +82,19 @@ class RetailProfiles extends React.Component {
             Authorization: 'Token token=' + token
           },
         }).then((resp) => {
-          console.log('this is the response ', resp) }).then(this.handleDialogOpen()).then(console.log('dialogOpen is ', this.state.dialogOpen))
+          console.log('response is ', resp)
+          this.setState({
+            editRecord: {
+              name: resp.retailprofile.name,
+              siteUrl: resp.retailprofile.siteUrl,
+              notes: resp.retailprofile.notes,
+              vegan: resp.retailprofile.vegan,
+              slow: resp.retailprofile.slow,
+              sustainable: resp.retailprofile.sustainable,
+              independent: resp.retailprofile.independent
+            }
+          })})
+            .then(this.handleDialogOpen())
   }
 
   delete(id) {
@@ -101,7 +127,7 @@ class RetailProfiles extends React.Component {
       <div>
       <Dashboard handleClick={this.delete} handleEdit={this.edit} handleDialogOpen={this.handleDialogOpen} retailProfiles={ this.state['retailProfiles'] }
       />
-      <EditDialog dialogOpen={this.state.dialogOpen} />
+      <EditDialog handleDialogClose={this.handleDialogClose} editRecord={this.state.editRecord} dialogOpen={this.state.dialogOpen} />
       <BottomNav />
       </div>
     );
