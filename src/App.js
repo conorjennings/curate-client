@@ -8,11 +8,6 @@ import SignUpPage from './containers/SignUpPage';
 import ChangePasswordPage from './containers/ChangePasswordPage';
 import RetailProfiles from './containers/RetailProfiles';
 import CreateContainer from './containers/CreateContainer';
-import store from './index';
-import { sessionService } from 'redux-react-session';
-import FlatButton from 'material-ui/FlatButton';
-import $ from 'jquery';
-
 
 import {
   Link,

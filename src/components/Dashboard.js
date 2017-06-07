@@ -1,22 +1,16 @@
 import React from 'react';
-import { Card, CardTitle } from 'material-ui/Card';
 import FavoriteIcon from 'react-material-icons/icons/action/favorite';
 import SlowIcon from 'react-material-icons/icons/action/schedule';
 import SustainableIcon from 'react-material-icons/icons/action/cached';
 import IndependentIcon from 'react-material-icons/icons/action/face';
-import FlatButton from 'material-ui/FlatButton';
 import Delete from './Delete'
 import Edit from './Edit'
 
 var Masonry = require('react-masonry-component');
 
-var masonryOptions = {
-    transitionDuration: 0
-};
-
 // Theme import required to get Material-UI working
 
-const Dashboard = ({retailProfiles, handleClick, handleEdit}) => {
+const Dashboard = ({retailProfiles, handleClick, handleEdit, handleDialogOpen}) => {
   const retailProfileArray = retailProfiles
   console.log('retailProfiles from props ', retailProfileArray)
 
@@ -33,6 +27,7 @@ const Dashboard = ({retailProfiles, handleClick, handleEdit}) => {
     <Edit
       data={retailProfile.id}
       handleEdit={() => handleEdit(retailProfile.id)}
+      handleDialogOpen={handleDialogOpen}
       />
     <Delete
       data={retailProfile.id}

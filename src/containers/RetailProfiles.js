@@ -1,6 +1,7 @@
 import React from 'react';
 import Dashboard from '../components/Dashboard';
 import BottomNav from '../components/BottomNav';
+import EditDialog from '../components/EditDialog';
 import $ from 'jquery';
 import store from '../index';
 
@@ -13,11 +14,13 @@ class RetailProfiles extends React.Component {
     super(props);
 
     this.state = {
-      retailProfiles: []
+      retailProfiles: [],
+      dialogOpen: false
     }
 
     this.delete = this.delete.bind(this);
     this.edit = this.edit.bind(this);
+    this.handleDialogOpen = this.handleDialogOpen.bind(this);
   }
 
   /**
@@ -50,6 +53,10 @@ class RetailProfiles extends React.Component {
         })
   }
 
+  handleDialogOpen () {
+    this.setState({dialogOpen: true});
+  };
+
   edit(id) {
     // Kick off GET AJAX to return the profile to be edited
     const currentStore = store.getState()
@@ -61,7 +68,7 @@ class RetailProfiles extends React.Component {
             Authorization: 'Token token=' + token
           },
         }).then((resp) => {
-          console.log('this is the response ', resp) })
+          console.log('this is the response ', resp) }).then(this.handleDialogOpen()).then(console.log('dialogOpen is ', this.state.dialogOpen))
   }
 
   delete(id) {
@@ -92,8 +99,9 @@ class RetailProfiles extends React.Component {
     console.log('associated retail profiles ', this.state['retailProfiles'])
     return (
       <div>
-      <Dashboard handleClick={this.delete} handleEdit={this.edit} retailProfiles = { this.state['retailProfiles'] }
+      <Dashboard handleClick={this.delete} handleEdit={this.edit} handleDialogOpen={this.handleDialogOpen} retailProfiles={ this.state['retailProfiles'] }
       />
+      <EditDialog dialogOpen={this.state.dialogOpen} />
       <BottomNav />
       </div>
     );

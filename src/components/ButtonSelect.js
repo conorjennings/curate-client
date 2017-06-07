@@ -1,6 +1,5 @@
 import React from 'react';
 import IconButton from 'material-ui/IconButton';
-import FontIcon from 'material-ui/FontIcon';
 import FavoriteIcon from 'react-material-icons/icons/action/favorite';
 
 const ButtonSelect = (props) => (

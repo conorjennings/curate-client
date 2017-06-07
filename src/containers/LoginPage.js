@@ -3,7 +3,6 @@ import LoginForm from '../components/LoginForm';
 import $ from 'jquery';
 import validator from 'validator';
 import { sessionService } from 'redux-react-session';
-import store from '../index';
 
 
 class LoginPage extends React.Component {
