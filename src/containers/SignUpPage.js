@@ -2,6 +2,7 @@ import React from 'react';
 import SignUpForm from '../components/SignUpForm';
 import $ from 'jquery';
 import validator from 'validator';
+import { BrowserRouter } from 'react-router-dom';
 
 class SignUpPage extends React.Component {
 
@@ -116,6 +117,8 @@ class SignUpPage extends React.Component {
     }
     if(emp(this.state.validationErrors)) {
       this.signUpAjax(email, password)
+        .then((() => {  this.context.router.history.push("/sign-in")
+        }))
       }
     }
 
@@ -133,6 +136,10 @@ class SignUpPage extends React.Component {
     );
   }
 
+}
+
+SignUpPage.contextTypes = {
+  router: React.PropTypes.object.isRequired
 }
 
 export default SignUpPage;
