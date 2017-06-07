@@ -24,7 +24,7 @@ sessionService.initSessionService(store, options);
 injectTapEventPlugin();
 
 
-ReactDOM.render(<App />, document.getElementById('root'));
+ReactDOM.render(<App store={store}/>, document.getElementById('root'));
 registerServiceWorker();
 
 export default store;

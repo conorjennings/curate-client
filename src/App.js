@@ -8,12 +8,14 @@ import SignUpPage from './containers/SignUpPage';
 import ChangePasswordPage from './containers/ChangePasswordPage';
 import RetailProfiles from './containers/RetailProfiles';
 import CreateContainer from './containers/CreateContainer';
+import { connect } from 'react-redux';
 
 import {
   Link,
   NavLink,
   BrowserRouter as Router,
   Route,
+  Redirect
 } from 'react-router-dom';
 
 class App extends React.Component {
@@ -40,11 +42,24 @@ class App extends React.Component {
         </div>
           <Route exact path="/" component={HomePage} />
 
-          <Route path="/sign-in" component={LoginPage} />
+          <Route path="/sign-in" render={() => (
+            this.props.session.authenticated ? (
+              <Redirect to="/dashboard" store={this.props.store}/>
+            ) : (
+              <LoginPage/>
+            )
+          )}/>
 
           <Route path="/sign-up" component={SignUpPage} />
           <Route path="/change-password" component={ChangePasswordPage} />
-          <Route path="/dashboard" component={RetailProfiles}/>
+
+          <Route path="/dashboard" render={() => (
+            !this.props.session.authenticated ? (
+              <Redirect to="/sign-in"/>
+            ) : (
+              <RetailProfiles store={this.props.store}/>
+            )
+          )}/>
           <Route path="/new" component={CreateContainer}/>
       </div>
       </Router>
@@ -53,4 +68,8 @@ class App extends React.Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => {
+  return { session : state.session };
+}
+
+export default connect(mapStateToProps)(App);

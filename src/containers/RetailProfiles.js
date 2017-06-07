@@ -29,7 +29,7 @@ class RetailProfiles extends React.Component {
    * @param {object} event - the JavaScript event object
    */
 
-  componentDidMount() {
+  componentWillReceiveProps() {
   //  create an AJAX request to GET RetailProfiles for current user
   const currentStore = store.getState()
   const token = currentStore.session.user.token
