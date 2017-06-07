@@ -15,9 +15,6 @@ const circleIcon = <FontIcon className="material-icons">fiber_manual_record</Fon
  * state (for instance, by the URL).
  */
 class BottomNav extends Component {
-  state = {
-    selectedIndex: 0,
-  };
 
   signOutAjax(event) {
    event.preventDefault();
@@ -42,21 +39,20 @@ class BottomNav extends Component {
 };
 
 
-  select = (index) => this.setState({selectedIndex: index});
+  // select = (index) => this.setState({selectedIndex: index});
 
   render() {
     return (
       <Paper className="bottom-nav" zDepth={1}>
-        <BottomNavigation selectedIndex={this.state.selectedIndex}>
+        <BottomNavigation>
           <BottomNavigationItem
             label="Add New"
             icon={circleIcon}
-            onTouchTap={() => this.select(0)}
+            onClick={this.props.handleCreateDialogOpen}
           />
           <BottomNavigationItem
             icon={circleIcon}
             label="Log Out"
-            onTouchTap={() => this.select(1)}
             onClick={this.signOutAjax}
           />
         </BottomNavigation>

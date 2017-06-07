@@ -2,6 +2,7 @@ import React from 'react';
 import Dashboard from '../components/Dashboard';
 import BottomNav from '../components/BottomNav';
 import EditDialog from '../components/EditDialog';
+import CreateContainer from '../containers/CreateContainer';
 import $ from 'jquery';
 import store from '../index';
 
@@ -16,6 +17,7 @@ class RetailProfiles extends React.Component {
     this.state = {
       retailProfiles: [],
       dialogOpen: false,
+      createDialogOpen: false,
       editRecord: {
         name: '',
         siteUrl: '',
@@ -31,6 +33,8 @@ class RetailProfiles extends React.Component {
     this.edit = this.edit.bind(this);
     this.handleDialogOpen = this.handleDialogOpen.bind(this);
     this.handleDialogClose = this.handleDialogClose.bind(this);
+    this.handleCreateDialogOpen = this.handleCreateDialogOpen.bind(this);
+    this.handleCreateDialogClose = this.handleCreateDialogClose.bind(this);
   }
 
   /**
@@ -67,8 +71,16 @@ class RetailProfiles extends React.Component {
     this.setState({dialogOpen: true});
   };
 
+  handleCreateDialogOpen () {
+    this.setState({createDialogOpen: true})
+  }
+
   handleDialogClose () {
     this.setState({dialogOpen: false});
+  };
+
+  handleCreateDialogClose () {
+    this.setState({createDialogOpen: false});
   };
 
   edit(id) {
@@ -127,8 +139,9 @@ class RetailProfiles extends React.Component {
       <div>
       <Dashboard handleClick={this.delete} handleEdit={this.edit} handleDialogOpen={this.handleDialogOpen} retailProfiles={ this.state['retailProfiles'] }
       />
+      <CreateContainer handleDialogClose={this.handleDialogClose} handleCreateDialogClose={this.handleCreateDialogClose} createDialogOpen={this.state.createDialogOpen}/>
       <EditDialog handleDialogClose={this.handleDialogClose} editRecord={this.state.editRecord} dialogOpen={this.state.dialogOpen} />
-      <BottomNav />
+      <BottomNav handleCreateDialogOpen={this.handleCreateDialogOpen}/>
       </div>
     );
   }

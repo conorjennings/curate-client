@@ -5,6 +5,8 @@ import $ from 'jquery';
 import SingleInput from '../components/SingleInput';
 import ButtonSelect from '../components/ButtonSelect';
 import RaisedButton from 'material-ui/RaisedButton';
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
 
 
 class CreateContainer extends React.Component {
@@ -15,6 +17,7 @@ class CreateContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      createDialogOpen: props.createDialogOpen,
       name: '',
       siteUrl: '',
       notes: '',
@@ -35,7 +38,8 @@ class CreateContainer extends React.Component {
    * @param {object} event - the JavaScript event object
    */
 
-   ComponentDidMount() {
+   componentWillReceiveProps(nextProps) {
+     this.setState({createDialogOpen : nextProps.createDialogOpen})
    }
 
   handleNameChange(e) {
@@ -75,19 +79,41 @@ class CreateContainer extends React.Component {
             notes: this.state.notes
           }
         }
-      })
-    }
-
-
-    handleCancel() {
-      // clear form logic goes here
+      }).then(this.props.handleCreateDialogClose).then((() => {  this.context.router.history.push("/dashboard")
+    })).then(this.setState({
+          name: '',
+          siteUrl: '',
+          vegan: false,
+          notes: ''
+    }))
     }
 
   /**
    * Render the component.
    */
   render() {
+
+    const actions = [
+      <FlatButton
+        label="Cancel"
+        primary={true}
+        onTouchTap={this.props.handleCreateDialogClose}
+      />,
+      <FlatButton
+        label="Submit"
+        primary={true}
+        onTouchTap={this.handleFormSubmit}
+      />,
+    ];
+
     return (
+    <div>
+      <Dialog
+      title="New Profile"
+      actions={actions}
+      modal={true}
+      open={this.state.createDialogOpen}
+    >
     <form className="container" onSubmit={this.handleFormSubmit}>
       <h5>New Retail Find</h5>
       <SingleInput
@@ -115,13 +141,15 @@ class CreateContainer extends React.Component {
           name={'vegan'}
           vegan={this.state.vegan}
           onClick={this.handleVeganClick}/> {/* User indicates if store is vegan friendly*/}
-      <div className="button-line">
-        <RaisedButton type="submit" label="Submit" primary />
-      </div>
-
-  </form>
+    </form>
+  </Dialog>
+  </div>
     );
   }
+}
+
+CreateContainer.contextTypes = {
+  router: React.PropTypes.object.isRequired
 }
 
 export default CreateContainer;

@@ -35,8 +35,6 @@ class App extends React.Component {
               <Link to="/sign-in">Sign in</Link>
               <Link to="/sign-up">Sign up</Link>
               <Link to="/change-password">Change Password</Link>
-              <Link to="/dashboard">Dashboard</Link>
-              <Link to="/new">New</Link>
             </div>
           </div>
         </div>
@@ -60,7 +58,6 @@ class App extends React.Component {
               <RetailProfiles store={this.props.store}/>
             )
           )}/>
-          <Route path="/new" component={CreateContainer}/>
       </div>
       </Router>
       </MuiThemeProvider>
