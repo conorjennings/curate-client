@@ -24,6 +24,7 @@ class ChangePasswordPage extends React.Component {
 
     this.processForm = this.processForm.bind(this);
     this.changeUser = this.changeUser.bind(this);
+    this.handleCancel = this.handleCancel.bind(this);
   }
 
   /**
@@ -132,7 +133,7 @@ class ChangePasswordPage extends React.Component {
     }
 
     handleCancel() {
-      this.context.router.history.push("/")
+      this.context.router.goBack()
     }
 
   /**

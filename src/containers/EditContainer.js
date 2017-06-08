@@ -3,7 +3,8 @@ import store from '../index';
 import $ from 'jquery';
 
 import SingleInput from '../components/SingleInput';
-import ButtonSelect from '../components/ButtonSelect';
+import VeganButtonSelect from '../components/VeganButtonSelect';
+import SlowButtonSelect from '../components/SlowButtonSelect';
 import RaisedButton from 'material-ui/RaisedButton';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
@@ -146,7 +147,7 @@ class EditContainer extends React.Component {
           controlFunc={this.handleNotesChange}
           content={this.state.notes}
           placeholder={'Add any comments here'}/> {/* Any notes user wants to capture */}
-      <ButtonSelect
+      <VeganButtonSelect
           name={'vegan'}
           vegan={this.state.vegan}
           onClick={this.handleVeganClick}/> {/* User indicates if store is vegan friendly*/}

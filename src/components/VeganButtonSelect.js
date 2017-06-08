@@ -2,7 +2,7 @@ import React from 'react';
 import IconButton from 'material-ui/IconButton';
 import FavoriteIcon from 'react-material-icons/icons/action/favorite';
 
-const ButtonSelect = (props) => (
+const VeganButtonSelect = (props) => (
   <div className="form-group">
   <IconButton tooltip="vegan" onClick={props.onClick}>
     <FavoriteIcon
@@ -12,10 +12,10 @@ const ButtonSelect = (props) => (
   </div>
 );
 
-ButtonSelect.propTypes = {
+VeganButtonSelect.propTypes = {
   name: React.PropTypes.string.isRequired,
   onClick: React.PropTypes.func.isRequired,
   vegan: React.PropTypes.bool.isRequired
 };
 
-export default ButtonSelect;
+export default VeganButtonSelect;

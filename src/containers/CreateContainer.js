@@ -3,7 +3,9 @@ import store from '../index';
 import $ from 'jquery';
 
 import SingleInput from '../components/SingleInput';
-import ButtonSelect from '../components/ButtonSelect';
+import VeganButtonSelect from '../components/VeganButtonSelect';
+import SlowButtonSelect from '../components/SlowButtonSelect';
+
 import RaisedButton from 'material-ui/RaisedButton';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
@@ -21,6 +23,7 @@ class CreateContainer extends React.Component {
       siteUrl: '',
       notes: '',
       vegan: false,
+      slow: false,
     };
     console.log ('here is starting state ', this.state)
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -28,6 +31,7 @@ class CreateContainer extends React.Component {
     this.handleSiteChange = this.handleSiteChange.bind(this);
     this.handleNotesChange = this.handleNotesChange.bind(this);
     this.handleVeganClick = this.handleVeganClick.bind(this);
+    this.handleSlowClick = this.handleSlowClick.bind(this);
     // will need function for handling cancel
   }
 
@@ -57,6 +61,10 @@ class CreateContainer extends React.Component {
     this.setState({ vegan: !this.state.vegan});
   }
 
+  handleSlowClick(e) {
+    this.setState({ slow: !this.state.slow});
+  }
+
    handleFormSubmit(event) {
       // AJAX request for Create
       event.preventDefault()
@@ -75,7 +83,8 @@ class CreateContainer extends React.Component {
             name: this.state.name,
             siteUrl: this.state.siteUrl,
             vegan: this.state.vegan,
-            notes: this.state.notes
+            notes: this.state.notes,
+            slow: this.state.slow
           }
         }
       }).then(this.props.handleCreateDialogClose).then((() => {  this.context.router.history.push("/dashboard")
@@ -83,7 +92,8 @@ class CreateContainer extends React.Component {
           name: '',
           siteUrl: '',
           vegan: false,
-          notes: ''
+          notes: '',
+          slow: false,
     }))
     }
 
@@ -136,10 +146,14 @@ class CreateContainer extends React.Component {
           controlFunc={this.handleNotesChange}
           content={this.state.notes}
           placeholder={'Add any comments here'}/> {/* Any notes user wants to capture */}
-      <ButtonSelect
+      <VeganButtonSelect
           name={'vegan'}
           vegan={this.state.vegan}
           onClick={this.handleVeganClick}/> {/* User indicates if store is vegan friendly*/}
+      <SlowButtonSelect
+          name={'slow'}
+          slow={this.state.slow}
+          onClick={this.handleSlowClick}/> {/* User indicates if store is slow fashion*/}
     </form>
   </Dialog>
   </div>
