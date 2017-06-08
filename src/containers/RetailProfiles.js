@@ -24,9 +24,9 @@ class RetailProfiles extends React.Component {
         siteUrl: '',
         notes: '',
         vegan: false,
-        slow: '',
-        sustainable: '',
-        independent: ''
+        slow: false,
+        sustainable: false,
+        independent: false
       }
     }
 

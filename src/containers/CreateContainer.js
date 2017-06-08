@@ -76,7 +76,7 @@ class CreateContainer extends React.Component {
   }
 
   handleIndependentClick(e) {
-    this.setState({ independent: !this.state.indpendent});
+    this.setState({ independent: !this.state.independent});
   }
 
    handleFormSubmit(event) {
@@ -173,11 +173,11 @@ class CreateContainer extends React.Component {
           slow={this.state.slow}
           onClick={this.handleSlowClick}/> {/* User indicates if store is slow fashion*/}
       <SustainableButtonSelect
-          name={'slow'}
+          name={'sustainable'}
           sustainable={this.state.sustainable}
           onClick={this.handleSustainableClick}/> {/* User indicates if store is sustainable fashion*/}
       <IndependentButtonSelect
-          name={'slow'}
+          name={'independent'}
           independent={this.state.independent}
           onClick={this.handleIndependentClick}/> {/* User indicates if store is independent fashion*/}
     </form>

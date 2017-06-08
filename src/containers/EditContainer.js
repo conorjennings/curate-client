@@ -5,6 +5,8 @@ import $ from 'jquery';
 import SingleInput from '../components/SingleInput';
 import VeganButtonSelect from '../components/VeganButtonSelect';
 import SlowButtonSelect from '../components/SlowButtonSelect';
+import SustainableButtonSelect from '../components/SustainableButtonSelect';
+import IndependentButtonSelect from '../components/IndependentButtonSelect';
 import RaisedButton from 'material-ui/RaisedButton';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
@@ -24,6 +26,9 @@ class EditContainer extends React.Component {
       siteUrl: props.editRecord.siteUrl,
       notes: props.editRecord.notes,
       vegan: props.editRecord.vegan,
+      slow: props.editRecord.slow,
+      sustainable: props.editRecord.sustainable,
+      independent: props.editRecord.independent
     };
     console.log ('here are the edit props ', this.state)
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -31,6 +36,9 @@ class EditContainer extends React.Component {
     this.handleSiteChange = this.handleSiteChange.bind(this);
     this.handleNotesChange = this.handleNotesChange.bind(this);
     this.handleVeganClick = this.handleVeganClick.bind(this);
+    this.handleSlowClick = this.handleSlowClick.bind(this);
+    this.handleSustainableClick = this.handleSustainableClick.bind(this);
+    this.handleIndependentClick = this.handleIndependentClick.bind(this);
     // will need function for handling cancel
   }
 
@@ -47,7 +55,10 @@ class EditContainer extends React.Component {
        name: nextProps.editRecord.name,
        siteUrl: nextProps.editRecord.siteUrl,
        notes: nextProps.editRecord.notes,
-       vegan: nextProps.editRecord.vegan
+       vegan: nextProps.editRecord.vegan,
+       slow: nextProps.editRecord.slow,
+       sustainable: nextProps.editRecord.sustainable,
+       independent: nextProps.editRecord.independent
      })
    }
 
@@ -65,6 +76,18 @@ class EditContainer extends React.Component {
 
   handleVeganClick(e) {
     this.setState({ vegan: !this.state.vegan});
+  }
+
+  handleSlowClick(e) {
+    this.setState({ slow: !this.state.slow});
+  }
+
+  handleSustainableClick(e) {
+    this.setState({ sustainable: !this.state.sustainable});
+  }
+
+  handleIndependentClick(e) {
+    this.setState({ independent: !this.state.independent});
   }
 
    handleFormSubmit(event) {
@@ -85,7 +108,10 @@ class EditContainer extends React.Component {
             name: this.state.name,
             siteUrl: this.state.siteUrl,
             vegan: this.state.vegan,
-            notes: this.state.notes
+            notes: this.state.notes,
+            slow: this.state.slow,
+            sustainable: this.state.sustainable,
+            independent: this.state.independent
           }
         }
       }).then(this.props.handleEditDialogClose).then((() => {  this.context.router.history.push("/dashboard")
@@ -94,7 +120,10 @@ class EditContainer extends React.Component {
           siteUrl: '',
           vegan: false,
           notes: '',
-          id: ''
+          id: '',
+          sustainable: false,
+          independent: false,
+          slow: false
     }))
     }
 
@@ -151,6 +180,18 @@ class EditContainer extends React.Component {
           name={'vegan'}
           vegan={this.state.vegan}
           onClick={this.handleVeganClick}/> {/* User indicates if store is vegan friendly*/}
+      <SlowButtonSelect
+          name={'slow'}
+          slow={this.state.slow}
+          onClick={this.handleSlowClick}/> {/* User indicates if store is slow fashion*/}
+      <SustainableButtonSelect
+          name={'sustainable'}
+          sustainable={this.state.sustainable}
+          onClick={this.handleSustainableClick}/> {/* User indicates if store is sustainable fashion*/}
+      <IndependentButtonSelect
+          name={'independent'}
+          independent={this.state.independent}
+          onClick={this.handleIndependentClick}/> {/* User indicates if store is independent fashion*/}
     </form>
   </Dialog>
   </div>
