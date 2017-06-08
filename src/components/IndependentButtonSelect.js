@@ -3,7 +3,7 @@ import IconButton from 'material-ui/IconButton';
 import IndependentIcon from 'react-material-icons/icons/action/face';
 
 const IndependentButtonSelect = (props) => (
-  <div className="form-group">
+  <div className="button">
   <IconButton tooltip="independent fashion" onClick={props.onClick}>
     <IndependentIcon
       color={ props.independent ? 'red' : 'black'}

@@ -154,7 +154,6 @@ class EditContainer extends React.Component {
       open={this.state.editDialogOpen}
     >
     <form className="container" onSubmit={this.handleFormSubmit}>
-      <h5>New Retail Find</h5>
       <SingleInput
         inputType={'text'}
           title={'Retailer Name'}
@@ -176,22 +175,24 @@ class EditContainer extends React.Component {
           controlFunc={this.handleNotesChange}
           content={this.state.notes}
           placeholder={'Add any comments here'}/> {/* Any notes user wants to capture */}
-      <VeganButtonSelect
-          name={'vegan'}
-          vegan={this.state.vegan}
-          onClick={this.handleVeganClick}/> {/* User indicates if store is vegan friendly*/}
-      <SlowButtonSelect
-          name={'slow'}
-          slow={this.state.slow}
-          onClick={this.handleSlowClick}/> {/* User indicates if store is slow fashion*/}
-      <SustainableButtonSelect
-          name={'sustainable'}
-          sustainable={this.state.sustainable}
-          onClick={this.handleSustainableClick}/> {/* User indicates if store is sustainable fashion*/}
-      <IndependentButtonSelect
-          name={'independent'}
-          independent={this.state.independent}
-          onClick={this.handleIndependentClick}/> {/* User indicates if store is independent fashion*/}
+      <div className='button-container'>
+        <VeganButtonSelect
+            name={'vegan'}
+            vegan={this.state.vegan}
+            onClick={this.handleVeganClick}/> {/* User indicates if store is vegan friendly*/}
+        <SlowButtonSelect
+            name={'slow'}
+            slow={this.state.slow}
+            onClick={this.handleSlowClick}/> {/* User indicates if store is slow fashion*/}
+        <SustainableButtonSelect
+            name={'sustainable'}
+            sustainable={this.state.sustainable}
+            onClick={this.handleSustainableClick}/> {/* User indicates if store is sustainable fashion*/}
+        <IndependentButtonSelect
+            name={'independent'}
+            independent={this.state.independent}
+            onClick={this.handleIndependentClick}/> {/* User indicates if store is independent fashion*/}
+      </div>
     </form>
   </Dialog>
   </div>

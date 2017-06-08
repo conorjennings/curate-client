@@ -3,7 +3,7 @@ import IconButton from 'material-ui/IconButton';
 import SustainableIcon from 'react-material-icons/icons/action/cached';
 
 const SustainableButtonSelect = (props) => (
-  <div className="form-group">
+  <div className="button">
   <IconButton tooltip="sustainable fashion" onClick={props.onClick}>
     <SustainableIcon
       color={ props.sustainable ? 'red' : 'black'}

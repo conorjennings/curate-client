@@ -3,7 +3,7 @@ import IconButton from 'material-ui/IconButton';
 import FavoriteIcon from 'react-material-icons/icons/action/favorite';
 
 const VeganButtonSelect = (props) => (
-  <div className="form-group">
+  <div className="button">
   <IconButton tooltip="vegan" onClick={props.onClick}>
     <FavoriteIcon
       color={ props.vegan ? 'red' : 'black'}
