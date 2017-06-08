@@ -4,6 +4,8 @@ import $ from 'jquery';
 import validator from 'validator';
 import store from '../index';
 
+const url = process.env.REACT_APP_API_URL
+
 class ChangePasswordPage extends React.Component {
 
   /**
@@ -65,7 +67,7 @@ class ChangePasswordPage extends React.Component {
 
     return $.ajax({
           url: '/change-password/' + id,
-          method: 'PATCH',
+          method: url + 'PATCH',
           headers: {
             Authorization: 'Token token=' + token
           },
