@@ -3,6 +3,7 @@ import LoginForm from '../components/LoginForm';
 import $ from 'jquery';
 import validator from 'validator';
 import { sessionService } from 'redux-react-session';
+import store from '../index';
 
 
 class LoginPage extends React.Component {
@@ -109,7 +110,7 @@ class LoginPage extends React.Component {
       this.signInAjax(email, password).then((resp) => {
         sessionService.saveSession(resp.user.token);
         sessionService.saveUser(resp.user)
-      }).catch((error) => {this.setState({ ajaxError : 'invalid credentials' })})
+      }).then(console.log('store.getState()', store.getState())).catch((error) => {this.setState({ ajaxError : 'invalid credentials' })})
     }
   }
 

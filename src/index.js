@@ -12,9 +12,9 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 
 // Add the sessionReducer
 const reducer = combineReducers({
-  session: sessionReducer
-});
-
+   session: sessionReducer
+ });
+ 
 const store = createStore(reducer);
 const options = { redirectPath: '/sign-in' };
 

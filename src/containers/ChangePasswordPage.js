@@ -70,11 +70,11 @@ class ChangePasswordPage extends React.Component {
           },
           data: {
             passwords: {
-              oldPw,
-              newPw
+              old: oldPw,
+              new: newPw
             }
           }
-        })
+        }).then((resp) => console.log('this is the response ', resp))
   }
 
   /**
@@ -128,7 +128,11 @@ class ChangePasswordPage extends React.Component {
     }
     if(emp(this.state.validationErrors)) {
       this.changePasswordAjax(oldPw, newPw)
-      }
+    }
+    }
+
+    handleCancel() {
+      this.context.router.history.push("/")
     }
 
   /**
@@ -141,10 +145,15 @@ class ChangePasswordPage extends React.Component {
         onChange={this.changeUser}
         user={this.state.user}
         validationErrors={this.state.validationErrors}
+        handleCancel={this.handleCancel}
       />
     );
   }
 
+}
+
+ChangePasswordPage.contextTypes = {
+  router: React.PropTypes.object.isRequired
 }
 
 export default ChangePasswordPage;

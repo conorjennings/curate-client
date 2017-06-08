@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Card } from 'material-ui/Card';
-import RaisedButton from 'material-ui/RaisedButton';
 import TextField from 'material-ui/TextField';
+import FlatButton from 'material-ui/FlatButton';
 
 
 const ChangePasswordForm = ({
@@ -10,6 +10,7 @@ const ChangePasswordForm = ({
   onChange,
   validationErrors,
   user,
+  handleCancel
 }) => (
   <Card className="container">
     <form action="/" onSubmit={onSubmit}>
@@ -51,7 +52,8 @@ const ChangePasswordForm = ({
       </div>
 
       <div className="button-line">
-        <RaisedButton type="submit" label="Change Password" primary />
+        <FlatButton type="submit" label="Change Password" primary />
+        <FlatButton onClick={handleCancel} label="Cancel" primary />
       </div>
     </form>
   </Card>

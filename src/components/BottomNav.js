@@ -38,8 +38,10 @@ class BottomNav extends Component {
     console.log('store.getState() ', store.getState()))
 };
 
-
-  // select = (index) => this.setState({selectedIndex: index});
+  rerouteToChangePassword = (e) => {
+    e.preventDefault()
+    this.context.router.history.push("/change-password")
+  }
 
   render() {
     return (
@@ -55,10 +57,19 @@ class BottomNav extends Component {
             label="Log Out"
             onClick={this.signOutAjax}
           />
+          <BottomNavigationItem
+            icon={circleIcon}
+            label="Change Password"
+            onClick={this.rerouteToChangePassword}
+          />
         </BottomNavigation>
       </Paper>
     );
   }
+}
+
+BottomNav.contextTypes = {
+  router: React.PropTypes.object.isRequired
 }
 
 export default BottomNav;

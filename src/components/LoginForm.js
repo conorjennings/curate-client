@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { Card, CardText } from 'material-ui/Card';
-import RaisedButton from 'material-ui/RaisedButton';
+import FlatButton from 'material-ui/FlatButton';
 import TextField from 'material-ui/TextField';
 
 
@@ -42,7 +42,7 @@ const LoginForm = ({
       </div>
 
       <div className="button-line">
-        <RaisedButton type="submit" label="Sign In" primary />
+        <FlatButton type="submit" label="Sign In" primary />
       </div>
 
       <CardText>No not have an account? <Link to={'/sign-up'}>Create one</Link>.</CardText>

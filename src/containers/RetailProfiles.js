@@ -23,7 +23,7 @@ class RetailProfiles extends React.Component {
         name: '',
         siteUrl: '',
         notes: '',
-        vegan: '',
+        vegan: false,
         slow: '',
         sustainable: '',
         independent: ''
@@ -46,6 +46,7 @@ class RetailProfiles extends React.Component {
 
   componentWillReceiveProps() {
   //  create an AJAX request to GET RetailProfiles for current user
+  console.log('store.getState()', store.getState())
   const currentStore = store.getState()
   const token = currentStore.session.user.token
   console.log('token looks like ', token)

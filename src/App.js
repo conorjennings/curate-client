@@ -2,7 +2,6 @@ import React from 'react';
 import './App.css';
 // Theme import required to get Material-UI working
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import HomePage from './components/HomePage';
 import LoginPage from './containers/LoginPage';
 import SignUpPage from './containers/SignUpPage';
 import ChangePasswordPage from './containers/ChangePasswordPage';
@@ -32,32 +31,31 @@ class App extends React.Component {
             </div>
 
             <div className="top-bar-right">
-              <Link to="/sign-in">Sign in</Link>
-              <Link to="/sign-up">Sign up</Link>
               <Link to="/change-password">Change Password</Link>
+              <Link to="/dashboard">Dashboard</Link>
             </div>
           </div>
         </div>
-          <Route exact path="/" component={HomePage} />
+          <Route exact path="/" component={LoginPage}/>
 
           <Route path="/sign-in" render={() => (
-            this.props.session.authenticated ? (
-              <Redirect to="/dashboard" store={this.props.store}/>
-            ) : (
-              <LoginPage/>
-            )
-          )}/>
+             this.props.session.authenticated ? (
+               <Redirect to="/dashboard" store={this.props.store}/>
+             ) : (
+               <LoginPage/>
+             )
+           )}/>
 
           <Route path="/sign-up" component={SignUpPage} />
           <Route path="/change-password" component={ChangePasswordPage} />
 
           <Route path="/dashboard" render={() => (
-            !this.props.session.authenticated ? (
-              <Redirect to="/sign-in"/>
-            ) : (
-              <RetailProfiles store={this.props.store}/>
+             !this.props.session.authenticated ? (
+               <Redirect to="/sign-in"/>
+             ) : (
+               <RetailProfiles store={this.props.store}/>
             )
-          )}/>
+            )}/>
       </div>
       </Router>
       </MuiThemeProvider>
