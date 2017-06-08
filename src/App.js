@@ -31,12 +31,17 @@ class App extends React.Component {
             </div>
 
             <div className="top-bar-right">
-              <Link to="/change-password">Change Password</Link>
               <Link to="/dashboard">Dashboard</Link>
             </div>
           </div>
         </div>
-          <Route exact path="/" component={LoginPage}/>
+          <Route exact path="/" render={() => (
+             this.props.session.authenticated ? (
+               <Redirect to="/dashboard" store={this.props.store}/>
+             ) : (
+               <LoginPage/>
+             )
+           )}/>
 
           <Route path="/sign-in" render={() => (
              this.props.session.authenticated ? (

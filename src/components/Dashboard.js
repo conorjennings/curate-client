@@ -3,6 +3,7 @@ import FavoriteIcon from 'react-material-icons/icons/action/favorite';
 import SlowIcon from 'react-material-icons/icons/action/schedule';
 import SustainableIcon from 'react-material-icons/icons/action/cached';
 import IndependentIcon from 'react-material-icons/icons/action/face';
+import {Card, CardActions} from 'material-ui/Card';
 import Delete from './Delete'
 import Edit from './Edit'
 
