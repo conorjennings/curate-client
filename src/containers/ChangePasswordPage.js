@@ -75,7 +75,7 @@ class ChangePasswordPage extends React.Component {
               new: newPw
             }
           }
-        }).then((resp) => console.log('this is the response ', resp))
+        }).then((resp) => {console.log('this is the response ', resp)})
   }
 
   /**

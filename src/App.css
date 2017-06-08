@@ -3,6 +3,26 @@
   font-weight: 300;
 }
 
+.profile-container {
+  margin: auto;
+  width: 80%;
+}
+
+.profile-card {
+  margin: 20px;
+  border: .5px solid gray;
+  max-width: 300px;
+}
+
+.profile-notes {
+  width: 95%;
+  max-width: 295px;
+}
+
+.profile-card-content {
+  padding: 10px;
+}
+
 .button {
   display:inline-block;
   width: 40px;
@@ -25,11 +45,25 @@ body {
   font-size: 16px;
 }
 
+h3 {
+  padding: 0;
+}
+
+.profile-icon {
+  display: inline-block;
+  margin-right: 5px;
+}
+
+.profile-icon-container {
+  height: 30px;
+}
+
 a {
   color: rgb(255,82,82);
   font-weight: bold;
   text-decoration: none;
   transition: color 0.4s;
+  font-size: 22px;
 }
 
 a:hover {

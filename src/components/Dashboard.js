@@ -16,14 +16,26 @@ const Dashboard = ({retailProfiles, handleClick, handleEdit, handleDialogOpen}) 
   console.log('retailProfiles from props ', retailProfileArray)
 
   const listItems = retailProfileArray.map((retailProfile) =>
-    <div key={retailProfile.id}>
-    <a href={retailProfile.siteUrl} target="_blank" rel="noopener noreferrer">{retailProfile.name}</a>
-    <p>{retailProfile.notes}</p>
+    <div className="profile-card" key={retailProfile.id}>
+    <div className="profile-card-content">
     <div>
+    <a href={retailProfile.siteUrl} target="_blank" rel="noopener noreferrer">{retailProfile.name}</a>
+    <h3>Notes</h3>
+    <p className="profile-notes">{retailProfile.notes}</p>
+    <div className="profile-icons">
+    <div className="profile-icon">
     {retailProfile.vegan && <FavoriteIcon/>}
+    </div>
+    <div className="profile-icon">
     {retailProfile.slow && <SlowIcon/>}
+    </div>
+    <div className="profile-icon">
     {retailProfile.sustainable && <SustainableIcon/>}
+    </div>
+    <div className="profile-icon">
     {retailProfile.independent && <IndependentIcon/>}
+    </div>
+    </div>
     </div>
     <Edit
       data={retailProfile.id}
@@ -35,12 +47,15 @@ const Dashboard = ({retailProfiles, handleClick, handleEdit, handleDialogOpen}) 
       handleClick={() => handleClick(retailProfile.id)}
     />
     </div>
+    </div>
   )
 
   return (
+  <div className="profile-container">
   <Masonry>
     {listItems}
   </Masonry>
+  </div>
   );
 }
 
