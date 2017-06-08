@@ -66,8 +66,8 @@ class ChangePasswordPage extends React.Component {
     console.log('id looks like ', id)
 
     return $.ajax({
-          url: '/change-password/' + id,
-          method: url + 'PATCH',
+          url: url + '/change-password/' + id,
+          method: 'PATCH',
           headers: {
             Authorization: 'Token token=' + token
           },
