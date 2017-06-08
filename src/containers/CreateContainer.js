@@ -50,7 +50,15 @@ class CreateContainer extends React.Component {
    */
 
    componentWillReceiveProps(nextProps) {
-     this.setState({createDialogOpen : nextProps.createDialogOpen})
+     this.setState({
+       createDialogOpen : nextProps.createDialogOpen,
+       name: '',
+       siteUrl: '',
+       notes: '',
+       vegan: false,
+       slow: false,
+       sustainable: false,
+       independent: false})
    }
 
   handleNameChange(e) {

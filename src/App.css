@@ -6,6 +6,7 @@
 .profile-container {
   margin: auto;
   width: 80%;
+  padding-bottom: 40px;
 }
 
 .profile-card {
@@ -38,6 +39,8 @@
     position: fixed;
     bottom: 0;
     width: 100%;
+    z-index:1;
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 body {
