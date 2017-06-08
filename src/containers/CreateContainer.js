@@ -6,6 +6,7 @@ import SingleInput from '../components/SingleInput';
 import VeganButtonSelect from '../components/VeganButtonSelect';
 import SlowButtonSelect from '../components/SlowButtonSelect';
 import SustainableButtonSelect from '../components/SustainableButtonSelect';
+import IndependentButtonSelect from '../components/IndependentButtonSelect';
 
 import RaisedButton from 'material-ui/RaisedButton';
 import Dialog from 'material-ui/Dialog';
@@ -25,7 +26,8 @@ class CreateContainer extends React.Component {
       notes: '',
       vegan: false,
       slow: false,
-      sustainable: false
+      sustainable: false,
+      independent: false
     };
     console.log ('here is starting state ', this.state)
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -35,6 +37,7 @@ class CreateContainer extends React.Component {
     this.handleVeganClick = this.handleVeganClick.bind(this);
     this.handleSlowClick = this.handleSlowClick.bind(this);
     this.handleSustainableClick = this.handleSustainableClick.bind(this);
+    this.handleIndependentClick = this.handleIndependentClick.bind(this);
     // will need function for handling cancel
   }
 
@@ -72,6 +75,10 @@ class CreateContainer extends React.Component {
     this.setState({ sustainable: !this.state.sustainable});
   }
 
+  handleIndependentClick(e) {
+    this.setState({ independent: !this.state.indpendent});
+  }
+
    handleFormSubmit(event) {
       // AJAX request for Create
       event.preventDefault()
@@ -92,7 +99,8 @@ class CreateContainer extends React.Component {
             vegan: this.state.vegan,
             notes: this.state.notes,
             slow: this.state.slow,
-            sustainable: this.state.sustainable
+            sustainable: this.state.sustainable,
+            independent: this.state.independent
           }
         }
       }).then(this.props.handleCreateDialogClose).then((() => {  this.context.router.history.push("/dashboard")
@@ -102,7 +110,8 @@ class CreateContainer extends React.Component {
           vegan: false,
           notes: '',
           slow: false,
-          sustainable: false
+          sustainable: false,
+          independent: false
     }))
     }
 
@@ -167,6 +176,10 @@ class CreateContainer extends React.Component {
           name={'slow'}
           sustainable={this.state.sustainable}
           onClick={this.handleSustainableClick}/> {/* User indicates if store is sustainable fashion*/}
+      <IndependentButtonSelect
+          name={'slow'}
+          independent={this.state.independent}
+          onClick={this.handleIndependentClick}/> {/* User indicates if store is independent fashion*/}
     </form>
   </Dialog>
   </div>
