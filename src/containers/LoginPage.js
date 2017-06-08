@@ -5,6 +5,7 @@ import validator from 'validator';
 import { sessionService } from 'redux-react-session';
 import store from '../index';
 
+const url = process.env.REACT_APP_API_URL
 
 class LoginPage extends React.Component {
 
@@ -52,7 +53,7 @@ class LoginPage extends React.Component {
    signInAjax(email, password) {
     // create an AJAX request Sign In
    return $.ajax({
-     url: '/sign-in',
+     url: url + '/sign-in',
      method: 'POST',
      data: {
        credentials: {

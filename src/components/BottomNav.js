@@ -8,6 +8,8 @@ import { sessionService } from 'redux-react-session';
 
 const circleIcon = <FontIcon className="material-icons">fiber_manual_record</FontIcon>;
 
+const url = process.env.REACT_APP_API_URL
+
 
 /**
  * A simple example of `BottomNavigation`, with three labels and icons
@@ -27,7 +29,7 @@ class BottomNav extends Component {
    console.log('id is ', id)
 
     return $.ajax({
-    url: '/sign-out/' + id,
+    url: url + '/sign-out/' + id,
     method: 'DELETE',
     headers: {
       Authorization: 'Token token=' + token

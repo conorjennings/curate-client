@@ -12,6 +12,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 
+const url = process.env.REACT_APP_API_URL
+
 class CreateContainer extends React.Component {
 
   /**
@@ -87,7 +89,7 @@ class CreateContainer extends React.Component {
       console.log('token is ', token)
 
       return $.ajax({
-        url: '/retailprofiles',
+        url: url + '/retailprofiles',
         method: 'POST',
         headers: {
           Authorization: 'Token token=' + token

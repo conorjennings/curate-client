@@ -11,6 +11,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 
+const url = process.env.REACT_APP_API_URL
+
 
 class EditContainer extends React.Component {
 
@@ -98,7 +100,7 @@ class EditContainer extends React.Component {
       console.log('token is ', token)
 
       return $.ajax({
-        url: '/retailprofiles/' + this.props.editRecord.id,
+        url: url + '/retailprofiles/' + this.props.editRecord.id,
         method: 'PATCH',
         headers: {
           Authorization: 'Token token=' + token

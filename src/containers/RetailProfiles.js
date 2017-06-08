@@ -6,6 +6,8 @@ import EditContainer from '../containers/EditContainer';
 import $ from 'jquery';
 import store from '../index';
 
+const url = process.env.REACT_APP_API_URL
+
 class RetailProfiles extends React.Component {
 
   /**
@@ -54,7 +56,7 @@ class RetailProfiles extends React.Component {
     let self = this;
 
     return $.ajax({
-          url: '/retailprofiles',
+          url: url + '/retailprofiles',
           method: 'GET',
           headers: {
             Authorization: 'Token token=' + token
@@ -90,7 +92,7 @@ class RetailProfiles extends React.Component {
     const currentStore = store.getState()
     const token = currentStore.session.user.token
     return $.ajax({
-          url: '/retailprofiles/' + id,
+          url: url + '/retailprofiles/' + id,
           method: 'GET',
           headers: {
             Authorization: 'Token token=' + token

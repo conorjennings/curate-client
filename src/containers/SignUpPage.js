@@ -4,6 +4,8 @@ import $ from 'jquery';
 import validator from 'validator';
 import { BrowserRouter } from 'react-router-dom';
 
+const url = process.env.REACT_APP_API_URL
+
 class SignUpPage extends React.Component {
 
   /**
@@ -54,7 +56,7 @@ class SignUpPage extends React.Component {
    // create an AJAX request for Sign Up
    signUpAjax(email, password, passwordConfirm) {
     return $.ajax({
-          url: '/sign-up',
+          url: url + '/sign-up',
           method: 'POST',
           data: {
             credentials: {
