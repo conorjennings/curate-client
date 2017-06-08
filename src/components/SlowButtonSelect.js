@@ -4,7 +4,7 @@ import SlowIcon from 'react-material-icons/icons/action/schedule';
 
 const SlowButtonSelect = (props) => (
   <div className="form-group">
-  <IconButton tooltip="slow fasion" onClick={props.onClick}>
+  <IconButton tooltip="slow fashion" onClick={props.onClick}>
     <SlowIcon
       color={ props.slow ? 'red' : 'black'}
       hoverColor='red'/>
