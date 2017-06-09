@@ -149,7 +149,7 @@ class CreateContainer extends React.Component {
     return (
     <div>
       <Dialog
-      title="Edit this Find"
+      title="New Designer Find"
       actions={actions}
       modal={true}
       open={this.state.createDialogOpen}

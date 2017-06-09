@@ -158,7 +158,7 @@ class EditContainer extends React.Component {
     return (
     <div>
       <Dialog
-      title="New Designer Find"
+      title="Edit This Find"
       actions={actions}
       modal={true}
       open={this.state.editDialogOpen}
