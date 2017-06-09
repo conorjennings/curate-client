@@ -132,13 +132,14 @@ class ChangePasswordPage extends React.Component {
     }
     if(emp(this.state.validationErrors)) {
       this.changePasswordAjax(oldPw, newPw)
-        .then((resp) => console.log('response', resp))
+        .then(() => this.context.router.history.goBack()).then(() => this.context.router.history.push("/dashboard"))
         .catch((error) => {this.setState({ ajaxError : 'incorrect current password. try again.' })})
     }
     }
 
     handleCancel() {
-      this.context.router.history.push("/dashboard")
+    this.context.router.history.goBack()
+    this.context.router.history.push("/dashboard")
     }
 
   /**

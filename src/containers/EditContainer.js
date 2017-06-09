@@ -23,6 +23,7 @@ class EditContainer extends React.Component {
     super(props);
     this.state = {
       editDialogOpen: props.editDialogOpen,
+      ajaxError: '',
       id: props.editRecord.id,
       name: props.editRecord.name,
       siteUrl: props.editRecord.siteUrl,
@@ -52,6 +53,7 @@ class EditContainer extends React.Component {
 
    componentWillReceiveProps(nextProps) {
      this.setState({
+       ajaxError: '',
        editDialogOpen : nextProps.editDialogOpen,
        id: nextProps.editRecord.id,
        name: nextProps.editRecord.name,
@@ -118,6 +120,7 @@ class EditContainer extends React.Component {
         }
       }).then(this.props.handleEditDialogClose).then((() => {  this.context.router.history.push("/dashboard")
     })).then(this.setState({
+          ajaxError: '',
           name: '',
           siteUrl: '',
           vegan: false,
@@ -126,7 +129,7 @@ class EditContainer extends React.Component {
           sustainable: false,
           independent: false,
           slow: false
-    }))
+    })).catch((error) => {this.setState({ ajaxError : 'retailer name required' })})
     }
 
   /**
@@ -155,6 +158,7 @@ class EditContainer extends React.Component {
       modal={true}
       open={this.state.editDialogOpen}
     >
+    {this.state.ajaxError && <p className="error-message">{this.state.ajaxError}</p>}
     <form className="container" onSubmit={this.handleFormSubmit}>
       <SingleInput
         inputType={'text'}
