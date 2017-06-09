@@ -125,7 +125,7 @@ class RetailProfiles extends React.Component {
     const token = currentStore.session.user.token
     // console.log('this is the token for delete ', token)
     return $.ajax({
-          url: '/retailprofiles/' + id,
+          url: url + '/retailprofiles/' + id,
           method: 'DELETE',
           headers: {
             Authorization: 'Token token=' + token
