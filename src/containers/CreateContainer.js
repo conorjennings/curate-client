@@ -149,7 +149,7 @@ class CreateContainer extends React.Component {
     return (
     <div>
       <Dialog
-      title="New Profile"
+      title="Edit this Find"
       actions={actions}
       modal={true}
       open={this.state.createDialogOpen}
