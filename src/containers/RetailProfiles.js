@@ -132,7 +132,7 @@ class RetailProfiles extends React.Component {
           },
         })
         // .then((resp) => {
-        //   console.log('this is the response ', resp) })
+        //   console.log('this is the ajax response ', resp) })
   }
 
 
