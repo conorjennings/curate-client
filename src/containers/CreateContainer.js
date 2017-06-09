@@ -23,6 +23,7 @@ class CreateContainer extends React.Component {
     super(props);
     this.state = {
       createDialogOpen: props.createDialogOpen,
+      ajaxError: '',
       name: '',
       siteUrl: '',
       notes: '',
@@ -52,6 +53,7 @@ class CreateContainer extends React.Component {
    componentWillReceiveProps(nextProps) {
      this.setState({
        createDialogOpen : nextProps.createDialogOpen,
+       ajaxError: '',
        name: '',
        siteUrl: '',
        notes: '',
@@ -115,6 +117,7 @@ class CreateContainer extends React.Component {
         }
       }).then(this.props.handleCreateDialogClose).then((() => {  this.context.router.history.push("/dashboard")
     })).then(this.setState({
+          ajaxError: '',
           name: '',
           siteUrl: '',
           vegan: false,
@@ -122,7 +125,7 @@ class CreateContainer extends React.Component {
           slow: false,
           sustainable: false,
           independent: false
-    }))
+    })).catch((error) => {this.setState({ ajaxError : 'retailer name required' })})
     }
 
   /**
@@ -151,8 +154,8 @@ class CreateContainer extends React.Component {
       modal={true}
       open={this.state.createDialogOpen}
     >
+    {this.state.ajaxError && <p className="error-message">{this.state.ajaxError}</p>}
     <form className="container" onSubmit={this.handleFormSubmit}>
-      <h5>New Retail Find</h5>
       <SingleInput
         inputType={'text'}
           title={'Retailer Name'}
@@ -171,6 +174,7 @@ class CreateContainer extends React.Component {
         inputType={'text'}
           title={'Notes'}
           name={'notes'}
+          maxlength="400"
           controlFunc={this.handleNotesChange}
           content={this.state.notes}
           placeholder={'Add any comments here'}/> {/* Any notes user wants to capture */}

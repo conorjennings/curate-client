@@ -10,7 +10,8 @@ const ChangePasswordForm = ({
   onChange,
   validationErrors,
   user,
-  handleCancel
+  handleCancel,
+  ajaxError
 }) => (
   <Card className="container">
     <form action="/" onSubmit={onSubmit}>
@@ -18,6 +19,7 @@ const ChangePasswordForm = ({
 
       {/*IF conditions don't work in JSX. Below element will display ONLY if errors.summary contains something or is TRUE.*/}
       {validationErrors.passwordMatch && <p className="error-message">{validationErrors.passwordMatch}</p>}
+      {ajaxError && <p className="error-message">{ajaxError}</p>}
 
       <div className="field-line">
         <TextField
