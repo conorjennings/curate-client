@@ -33,7 +33,7 @@ class EditContainer extends React.Component {
       sustainable: props.editRecord.sustainable,
       independent: props.editRecord.independent
     };
-    console.log ('here are the edit props ', this.state)
+    // console.log ('here are the edit props ', this.state)
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleSiteChange = this.handleSiteChange.bind(this);
@@ -100,7 +100,7 @@ class EditContainer extends React.Component {
 
       const currentStore = store.getState()
       const token = currentStore.session.user.token
-      console.log('token is ', token)
+      // console.log('token is ', token)
       if(this.state.name == "") {
         this.setState({ ajaxError: "retailer name required" })
       }

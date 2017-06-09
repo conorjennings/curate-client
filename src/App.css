@@ -73,6 +73,9 @@ h3 {
 
 .curate-logo {
   font-size: 30px;
+  color: rgb(255,82,82);
+  font-weight: bold;
+  text-decoration: none;
 }
 
 a {

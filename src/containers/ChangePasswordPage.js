@@ -61,10 +61,10 @@ class ChangePasswordPage extends React.Component {
     const id = currentStore.session.user.id
     const token = currentStore.session.user.token
 
-    console.log('token looks like ', token)
-    console.log('old pw looks like ', oldPw)
-    console.log('new ps looks like ', newPw)
-    console.log('id looks like ', id)
+    // console.log('token looks like ', token)
+    // console.log('old pw looks like ', oldPw)
+    // console.log('new ps looks like ', newPw)
+    // console.log('id looks like ', id)
 
     return $.ajax({
           url: url + '/change-password/' + id,
@@ -78,7 +78,8 @@ class ChangePasswordPage extends React.Component {
               new: newPw
             }
           }
-        }).then((resp) => {console.log('this is the response ', resp)})
+        })
+        // .then((resp) => {console.log('this is the response ', resp)})
   }
 
   /**
@@ -116,11 +117,11 @@ class ChangePasswordPage extends React.Component {
      for ( let key in errors) {
        if (errors[key].result) {
          validationErrors[key]=errors[key].message
-         console.log('validationErrors looks like ', validationErrors)
+        //  console.log('validationErrors looks like ', validationErrors)
          this.setState({ validationErrors })
        }
      }
-     console.log('this.state.validationErrors', this.state.validationErrors)
+    //  console.log('this.state.validationErrors', this.state.validationErrors)
 
       function emp(obj) {
         for(let key in obj) {

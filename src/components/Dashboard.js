@@ -13,7 +13,7 @@ var Masonry = require('react-masonry-component');
 
 const Dashboard = ({retailProfiles, handleClick, handleEdit, handleDialogOpen}) => {
   const retailProfileArray = retailProfiles
-  console.log('retailProfiles from props ', retailProfileArray)
+  // console.log('retailProfiles from props ', retailProfileArray)
 
   const listItems = retailProfileArray.map((retailProfile) =>
     <div className="profile-card" key={retailProfile.id}>

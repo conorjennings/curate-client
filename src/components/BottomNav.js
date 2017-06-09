@@ -25,8 +25,8 @@ class BottomNav extends Component {
    const token = currentStore.session.user.token
    const id = currentStore.session.user.id
 
-   console.log('token is ', token)
-   console.log('id is ', id)
+  //  console.log('token is ', token)
+  //  console.log('id is ', id)
 
     return $.ajax({
     url: url + '/sign-out/' + id,
@@ -36,8 +36,8 @@ class BottomNav extends Component {
     }
   }).then((resp) => {
     sessionService.deleteSession()
-    sessionService.deleteUser()}).then(
-    console.log('store.getState() ', store.getState()))
+    sessionService.deleteUser()})
+    // .then(console.log('store.getState() ', store.getState()))
 };
 
   rerouteToChangePassword = (e) => {

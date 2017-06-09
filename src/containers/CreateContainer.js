@@ -32,7 +32,7 @@ class CreateContainer extends React.Component {
       sustainable: false,
       independent: false
     };
-    console.log ('here is starting state ', this.state)
+    // console.log ('here is starting state ', this.state)
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleNameChange = this.handleNameChange.bind(this);
     this.handleSiteChange = this.handleSiteChange.bind(this);
@@ -96,7 +96,7 @@ class CreateContainer extends React.Component {
       event.preventDefault()
       const currentStore = store.getState()
       const token = currentStore.session.user.token
-      console.log('token is ', token)
+      // console.log('token is ', token)
 
       return $.ajax({
         url: url + '/retailprofiles',

@@ -103,11 +103,11 @@ class SignUpPage extends React.Component {
      for ( let key in errors) {
        if (errors[key].result) {
          validationErrors[key]=errors[key].message
-         console.log('validationErrors looks like ', validationErrors)
+        //  console.log('validationErrors looks like ', validationErrors)
          this.setState({ validationErrors })
        }
      }
-     console.log('this.state.validationErrors', this.state.validationErrors)
+    //  console.log('this.state.validationErrors', this.state.validationErrors)
 
       function emp(obj) {
         for(let key in obj) {

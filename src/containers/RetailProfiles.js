@@ -48,10 +48,10 @@ class RetailProfiles extends React.Component {
 
   componentWillReceiveProps() {
   //  create an AJAX request to GET RetailProfiles for current user
-  console.log('store.getState()', store.getState())
+  // console.log('store.getState()', store.getState())
   const currentStore = store.getState()
   const token = currentStore.session.user.token
-  console.log('token looks like ', token)
+  // console.log('token looks like ', token)
 
     let self = this;
 
@@ -62,9 +62,9 @@ class RetailProfiles extends React.Component {
             Authorization: 'Token token=' + token
           },
         }).then((resp) => {
-          console.log('this is the response ', resp)
+          // console.log('this is the response ', resp)
           const profiles = resp['retailprofiles'];
-          console.log('profiles is', profiles)
+          // console.log('profiles is', profiles)
           self.setState({
             retailProfiles: profiles
           })
@@ -98,7 +98,7 @@ class RetailProfiles extends React.Component {
             Authorization: 'Token token=' + token
           },
         }).then((resp) => {
-          console.log('response is ', resp)
+          // console.log('response is ', resp)
           this.setState({
             editRecord: {
               id: id,
@@ -116,22 +116,23 @@ class RetailProfiles extends React.Component {
 
   delete(id) {
     let retailProfilesArray = this.state['retailProfiles']
-    console.log('id being passed in is ', id)
-    console.log('retail profiles array looks like ', retailProfilesArray)
+    // console.log('id being passed in is ', id)
+    // console.log('retail profiles array looks like ', retailProfilesArray)
     let retailProfiles = retailProfilesArray.filter(retailProfile => retailProfile.id !== id)
     this.setState({retailProfiles})
     // Kick off DELETE AJAX to delete record from backend
     const currentStore = store.getState()
     const token = currentStore.session.user.token
-    console.log('this is the token for delete ', token)
+    // console.log('this is the token for delete ', token)
     return $.ajax({
           url: '/retailprofiles/' + id,
           method: 'DELETE',
           headers: {
             Authorization: 'Token token=' + token
           },
-        }).then((resp) => {
-          console.log('this is the response ', resp) })
+        })
+        // .then((resp) => {
+        //   console.log('this is the response ', resp) })
   }
 
 
@@ -139,7 +140,7 @@ class RetailProfiles extends React.Component {
    * Render the component.
    */
   render() {
-    console.log('associated retail profiles ', this.state['retailProfiles'])
+    // console.log('associated retail profiles ', this.state['retailProfiles'])
     return (
       <div>
       <Dashboard handleClick={this.delete} handleEdit={this.edit} handleDialogOpen={this.handleDialogOpen} retailProfiles={ this.state['retailProfiles'] }
