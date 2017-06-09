@@ -10,11 +10,11 @@ curate. is a clean and simple way to manage retail sources who align with your v
 
 A user must create an account and authenticate to access curate.
 
-![Sign In](img/sign-in.JPG)
+![Sign In](img/sign-in.jpg)
 
 Once signed in, a user can see all retail profiles they have saved under their account.
 
-![Landing Page](img/landing-page.JPG)
+![Landing Page](img/landing-page.jpg)
 
 A user creates an new profile by selecting the icon in the bottom navigation bar. An input form is displayed with options to save the new profile or discard it.
 
@@ -34,9 +34,9 @@ To sign out, select the log out button at the bottom of the screen. Users are br
 
 The design is optimized for any size device. Ideas display in multiple columns on wider screens.
 
-![Two Column Format](img/two-column.JPG)
+![Two Column Format](img/two-column.jpg)
 
-![Four Column Format](img/four-column.JPG)
+![Four Column Format](img/four-column.jpg)
 
 ## Project Planning
 
