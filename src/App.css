@@ -3,6 +3,10 @@
   font-weight: 300;
 }
 
+#root {
+  width: 100%;
+}
+
 .profile-container {
   margin: auto;
   width: 80%;
@@ -18,6 +22,7 @@
 .profile-notes {
   width: 95%;
   max-width: 295px;
+  word-wrap: break-word;
 }
 
 .profile-card-content {
@@ -61,12 +66,16 @@ h3 {
   height: 30px;
 }
 
+.curate-logo {
+  font-size: 30px;
+}
+
 a {
   color: rgb(255,82,82);
   font-weight: bold;
   text-decoration: none;
   transition: color 0.4s;
-  font-size: 22px;
+  font-size: 15px;
 }
 
 a:hover {
@@ -104,7 +113,7 @@ a:hover {
 .container {
   margin: 0 auto;
   text-align: center;
-  width: 700px;
+  width: 70%;
 }
 
 .card-heading {
@@ -112,7 +121,11 @@ a:hover {
 }
 
 .field-line, .button-line {
-  padding: 16px;
+  margin: auto;
+}
+
+.auth-field {
+  width: 40%;
 }
 
 .error-message {

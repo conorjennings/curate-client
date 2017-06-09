@@ -21,7 +21,7 @@ const LoginForm = ({
       {ajaxError && <p className="error-message">{ajaxError}</p>}
 
       <div className="field-line">
-        <TextField
+        <TextField className="auth-field"
           floatingLabelText="Email"
           name="email"
           errorText={validationErrors.email}
@@ -31,7 +31,7 @@ const LoginForm = ({
       </div>
 
       <div className="field-line">
-        <TextField
+        <TextField className="auth-field"
           floatingLabelText="Password"
           type="password"
           name="password"

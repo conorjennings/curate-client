@@ -27,11 +27,7 @@ class App extends React.Component {
         <div>
           <div className="top-bar">
             <div className="top-bar-left">
-              <NavLink to="/" className="curate-logo">curate.</NavLink>
-            </div>
-
-            <div className="top-bar-right">
-              <Link to="/dashboard">Dashboard</Link>
+              <Link to="/dashboard" className="curate-logo">curate.</Link>
             </div>
           </div>
         </div>
