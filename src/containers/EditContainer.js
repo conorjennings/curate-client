@@ -97,10 +97,14 @@ class EditContainer extends React.Component {
    handleFormSubmit(event) {
       // AJAX request for Edit
       event.preventDefault()
+
       const currentStore = store.getState()
       const token = currentStore.session.user.token
       console.log('token is ', token)
-
+      if(this.state.name == "") {
+        this.setState({ ajaxError: "retailer name required" })
+      }
+      else {
       return $.ajax({
         url: url + '/retailprofiles/' + this.props.editRecord.id,
         method: 'PATCH',
@@ -131,6 +135,7 @@ class EditContainer extends React.Component {
           slow: false
     })).catch((error) => {this.setState({ ajaxError : 'retailer name required' })})
     }
+  }
 
   /**
    * Render the component.
